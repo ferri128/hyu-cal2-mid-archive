@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>한양대학교 미분적분학 2 중간 기출문제 및 풀이 아카이브</title>
+    
+    <!-- KaTeX 수식 라이브러리 CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+
+    <style>
+        :root {
+            --primary-color: #1d4ed8;
+            --primary-hover: #1e40af;
+            --bg-color: #f1f5f9;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-sub: #475569;
+            --border-color: #e2e8f0;
+            
+            --answer-bg: #f0fdf4;
+            --answer-border: #86efac;
+            --answer-text: #14532d;
+            --badge-bg: #eff6ff;
+            --details-bg: #f8fafc;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.75;
+            margin: 0;
+            padding: 40px 16px;
+        }
+
+        /* 메인 레이아웃 설정 */
+        .layout-wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+            position: relative;
+        }
+
+        .container {
+            flex: 1;
+            min-width: 0;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 32px;
+            padding-bottom: 24px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        h1 {
+            margin: 0 0 10px 0;
+            font-size: 1.85rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: var(--text-main);
+        }
+
+        header p {
+            margin: 0;
+            color: var(--text-sub);
+            font-size: 0.95rem;
+        }
+
+        /* 제어 영역 */
+        .controls-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            align-items: center;
+            margin-bottom: 28px;
+        }
+
+        .filter-container {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-btn, .toggle-all-btn {
+            background-color: var(--card-bg);
+            color: var(--text-sub);
+            border: 1px solid var(--border-color);
+            padding: 7px 20px;
+            border-radius: 9999px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s ease-in-out;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+        }
+
+        .filter-btn:hover, .toggle-all-btn:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .filter-btn.active {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 6px -1px rgba(29, 78, 216, 0.25);
+        }
+
+        .toggle-all-btn {
+            border-radius: 8px;
+            background-color: #ffffff;
+            font-size: 0.85rem;
+            padding: 6px 14px;
+        }
+
+        /* 사이드바 바로가기 목차 스타일 (PC) */
+        .quick-nav {
+            position: sticky;
+            top: 40px;
+            width: 180px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            flex-shrink: 0;
+        }
+
+        .quick-nav-title {
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: var(--text-sub);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .quick-nav-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+
+        .quick-nav-item a {
+            display: block;
+            padding: 5px 10px;
+            color: var(--text-sub);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: 6px;
+            transition: all 0.15s ease;
+        }
+
+        .quick-nav-item a:hover {
+            background-color: var(--badge-bg);
+            color: var(--primary-color);
+        }
+
+        /* 문제 카드 스타일 */
+        .problem-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 28px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border-color);
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+            scroll-margin-top: 40px;
+        }
+
+        .problem-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.03);
+        }
+
+        .problem-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .badge {
+            background-color: var(--badge-bg);
+            color: var(--primary-color);
+            padding: 3px 12px;
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+        }
+
+        .problem-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 14px;
+            color: var(--text-main);
+        }
+
+        .problem-body {
+            margin-bottom: 20px;
+            font-size: 1rem;
+            overflow-x: auto;
+        }
+
+        /* 정답 영역 스타일 */
+        .answer-box {
+            background-color: var(--answer-bg);
+            border: 1px solid var(--answer-border);
+            color: var(--answer-text);
+            padding: 12px 18px;
+            border-radius: 10px;
+            font-weight: 600;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            overflow-x: auto;
+        }
+
+        .answer-label {
+            background-color: #16a34a;
+            color: #ffffff;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        /* 풀이 접기/펴기 */
+        details {
+            background-color: var(--details-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 12px 16px;
+            transition: background-color 0.2s;
+        }
+
+        details[open] {
+            background-color: #ffffff;
+        }
+
+        summary {
+            font-weight: 600;
+            cursor: pointer;
+            color: var(--text-sub);
+            user-select: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.95rem;
+        }
+
+        summary:hover {
+            color: var(--primary-color);
+        }
+
+        summary::after {
+            content: "▼";
+            font-size: 0.75rem;
+            transition: transform 0.2s ease;
+            color: #94a3b8;
+        }
+
+        details[open] summary::after {
+            transform: rotate(180deg);
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .solution-body {
+            margin-top: 14px;
+            padding-top: 14px;
+            border-top: 1px dashed var(--border-color);
+            overflow-x: auto;
+        }
+
+        /* 모바일 대응 (화면 폭 900px 이하) */
+        @media (max-width: 900px) {
+            .layout-wrapper {
+                flex-direction: column;
+            }
+
+            .quick-nav {
+                position: fixed;
+                bottom: 12px;
+                left: 12px;
+                right: 12px;
+                top: auto;
+                width: auto;
+                z-index: 100;
+                padding: 10px 14px;
+                border-radius: 30px;
+                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(8px);
+            }
+
+            .quick-nav-title {
+                display: none;
+            }
+
+            .quick-nav-list {
+                flex-direction: row;
+                overflow-x: auto;
+                max-height: none;
+                gap: 6px;
+                white-space: nowrap;
+            }
+
+            .quick-nav-item a {
+                background: var(--bg-color);
+                padding: 4px 12px;
+                border-radius: 20px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="layout-wrapper">
+    
+    <!-- 메인 컨텐츠 영역 -->
+    <div class="container">
+        <header>
+            <h1>한양대학교 미분적분학 2 중간 기출문제</h1>
+            <p>년도별 기출문제 · 정답 및 상세 풀이</p>
+        </header>
+
+        <!-- 제어 영역 -->
+        <div class="controls-wrapper">
+            <div class="filter-container">
+                <button class="filter-btn active" onclick="filterYear('2025')">2025년</button>
+                <button class="filter-btn" onclick="filterYear('2024')">2024년</button>
+                <button class="filter-btn" onclick="filterYear('2023')">2023년</button>
+            </div>
+            <button class="toggle-all-btn" onclick="toggleAllSolutions()">💡 모든 풀이 한번에 열기/접기</button>
+        </div>
+
+        <!-- 문제 목록 시작 -->
+        <div id="problem-list">
+
+            <div class="problem-card" id="prob-1" data-year="2025">
+                <div class="problem-header"><span class="badge">2025년</span></div>
+                <div class="problem-title">1번. 벡터 함수의 정적분</div>
+                <div class="problem-body">
+                    다음 적분을 계산하여라. $$\int_{0}^{\pi} \left(t^3 \mathbf{i} + 4\sin t \mathbf{j} - 4e^{2t}\mathbf{k}\right) \, dt$$
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>$$\frac{\pi^4}{4} \mathbf{i} + 4 \mathbf{j} - 2 \left( e^{2\pi}-1 \right)\mathbf{k}$$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        \int 
+                        &= \frac{t^4}{4} \mathbf{i} - 4\cos t \mathbf{j} - 2e^{2t}\mathbf{k} \Bigg|_0^\pi \\
+                        & = \frac{\pi^4}{4} \mathbf{i} + 4 \mathbf{j} - 2 \left( e^{2\pi}-1 \right)\mathbf{k}
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-2-1" data-year="2025">
+                <div class="problem-header"><span class="badge">2025년</span></div>
+                <div class="problem-title">2번 (1). 그래디언트 구하기</div>
+                <div class="problem-body">
+                    $$f(x,y) = \sinh(x^2 + \cos y)$$일 때, $f$의 그래디언트를 구하여라.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>$$\left( 2x\cosh(x^2 + \cos y), \, -\sin y\cosh(x^2 + \cos y) \right)$$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        f(x,y) &= \sinh(x^2 + \cos y) \\
+                        \nabla f(x,y) &= \left( \frac{\partial f}{\partial x}, \frac{\partial f}{\partial y} \right) \\
+                        &= \left( \cosh(x^2 + \cos y) \cdot \frac{\partial}{\partial x}(x^2 + \cos y), \, \cosh(x^2 + \cos y) \cdot \frac{\partial}{\partial y}(x^2 + \cos y) \right) \\
+                        &= \left( 2x\cosh(x^2 + \cos y), \, -\sin y\cosh(x^2 + \cos y) \right)
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-2-2" data-year="2025">
+                <div class="problem-header"><span class="badge">2025년</span></div>
+                <div class="problem-title">2번 (2). 방향도함수 구하기</div>
+                <div class="problem-body">
+                    $$f(x,y) = \frac{x}{y}$$일 때, 점 $(3,1)$에서의 $\langle1,1\rangle$ 방향의 방향도함수를 구하여라.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>$$-\sqrt{2}$$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        f(x,y) &= \frac{x}{y} \\
+                        \nabla f(x,y) &= \left\langle \frac{1}{y}, \, -\frac{x}{y^2} \right\rangle \\
+                        \nabla f(3,1) &= \left\langle \frac{1}{1}, \, -\frac{3}{1^2} \right\rangle = \langle 1, -3 \rangle \\
+                        \mathbf{u} &= \frac{\langle 1, 1 \rangle}{\|\langle 1, 1 \rangle\|} = \left\langle \frac{1}{\sqrt{2}}, \, \frac{1}{\sqrt{2}} \right\rangle \\
+                        D_{\mathbf{u}}f(3,1) &= \nabla f(3,1) \cdot \mathbf{u} = \langle 1, -3 \rangle \cdot \left\langle \frac{1}{\sqrt{2}}, \, \frac{1}{\sqrt{2}} \right\rangle = -\sqrt{2}
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-2-3" data-year="2025">
+                <div class="problem-header"><span class="badge">2025년</span></div>
+                <div class="problem-title">2번 (3). 이계 편도함수 구하기</div>
+                <div class="problem-body">
+                    $$g(x,y) = e^{xy} \log(y^2)$$일 때, $g_{xy}$를 구하여라. (단, $\log$는 자연로그이다.)
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>$$e^{xy} \left[ (1 + xy)\log(y^2) + 2 \right]$$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        g(x,y) &= e^{xy} \log(y^2) \\
+                        g_x &= \frac{\partial g}{\partial x} = y e^{xy} \log(y^2) \\
+                        g_{xy} &= \frac{\partial}{\partial y} \left[ y e^{xy} \log(y^2) \right] = e^{xy} \left[ (1 + xy)\log(y^2) + 2 \right]
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-3" data-year="2025">
+                <div class="problem-header"><span class="badge">2025년</span></div>
+                <div class="problem-title">3번. 이중적분 계산</div>
+                <div class="problem-body">
+                    $$\int_{0}^{\pi} \int_{-2}^{2} x^2 \sin y \, dx dy$$를 계산하시오.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>$$\frac{32}{3}$$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        \int_{0}^{\pi} \int_{-2}^{2} x^2 \sin y \, dx dy &= \left( \int_{-2}^{2} x^2 \, dx \right) \left( \int_{0}^{\pi} \sin y \, dy \right) = \frac{32}{3}
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-4-1" data-year="2025">
+                <div class="problem-header"><span class="badge">2025년</span></div>
+                <div class="problem-title">4번 (1). 벡터함수의 정의역</div>
+                <div class="problem-body">
+                    $$\mathbf{r}(t) = \left\langle e^t , \sqrt{4-t^2}, \frac{t-t^2}{t \ln t } \right\rangle$$의 정의역을 구하여라.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>$$(0,1) \cup (1,2]$$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        f(t) &= e^t &\text{정의역}: ~& (-\infty , \infty)\\
+                        g(t) &= \sqrt{4-t^2} &\text{정의역}:~& [-2,2] \\
+                        h(t) &= \frac{t-t^2}{t \ln t} &\text{정의역}:~&(0, 1) \cup (1, \infty) \\
+                        \mathbf{r}(t) &&\text{정의역}:~& (0,1) \cup (1,2]
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-4-2" data-year="2025">
+                <div class="problem-header"><span class="badge">2025년</span></div>
+                <div class="problem-title">4번 (2). 벡터함수의 극한</div>
+                <div class="problem-body">
+                    $$\mathbf{r}(t) = \left\langle e^t , \sqrt{4-t^2}, \frac{t-t^2}{t \ln t } \right\rangle$$일 때, $$\lim_{t \to 1}{\mathbf{r}(t)}$$를 구하여라.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>$$\left\langle e, \, \sqrt{3}, \, -1 \right\rangle$$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        \lim_{t \to 1} \mathbf{r}(t) &= \left\langle \lim_{t \to 1} e^t, \, \lim_{t \to 1} \sqrt{4-t^2}, \, \lim_{t \to 1} \frac{t-t^2}{t \ln t} \right\rangle = \left\langle e, \, \sqrt{3}, \, -1 \right\rangle
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-5" data-year="2025">
+                <div class="problem-header"><span class="badge">2025년</span></div>
+                <div class="problem-title">5번. 접평면의 방정식</div>
+                <div class="problem-body">
+                    방정식 $$z=1+\sin(2x +3y)$$의 점 $$\left( \frac{\pi}{6}, 0 \right)$$에서 수직인 면(접평면)의 방정식을 구하여라.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>$$z = x + \frac{3}{2}y - \frac{\pi}{6} + 1 + \frac{\sqrt{3}}{2}$$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        z_0 &= 1 + \frac{\sqrt{3}}{2}, \quad f_x\left(\frac{\pi}{6}, 0\right) = 1, \quad f_y\left(\frac{\pi}{6}, 0\right) = \frac{3}{2} \\
+                        z &= x + \frac{3}{2}y - \frac{\pi}{6} + 1 + \frac{\sqrt{3}}{2}
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-6" data-year="2025">
+                <div class="problem-header"><span class="badge">2025년</span></div>
+                <div class="problem-title">6번. 음함수의 편미분</div>
+                <div class="problem-body">
+                    $$xyz = \cos(xy - y +z^2 -1)$$일 때, $(1, 1, 1)$에서 $$\frac{\partial z }{\partial x }+\frac{\partial z }{\partial y}$$를 구하여라.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>$$-2$$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        F_x(1,1,1) = 1, \quad F_y(1,1,1) = 1, \quad F_z(1,1,1) = 1 \implies \frac{\partial z}{\partial x}+ \frac{\partial z}{\partial y} = -2
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-7" data-year="2025">
+                <div class="problem-header"><span class="badge">2025년</span></div>
+                <div class="problem-title">7번. 매개변수 곡선의 곡률</div>
+                <div class="problem-body">
+                    곡선 $C$는 $$\mathbf{r}(t) = \left\langle t^2 +t, t^2 - t +1 , t^3 \right\rangle$$로 정의된다. $$-3y + z + 2 =0$$과 평행한 평면이 곡선 $C$와 만나는 점에서의 곡선 $C$의 곡률을 구하여라.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>$$\frac{4\sqrt{10}}{19\sqrt{19}}$$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        \mathbf{r}'(1) &= \left\langle 3, 1, 3 \right\rangle, \quad \mathbf{r}''(1) = \left\langle 2, 2, 6 \right\rangle \\
+                        \kappa &= \frac{\|\mathbf{r}'(1) \times \mathbf{r}''(1)\|}{\|\mathbf{r}'(1)\|^3} = \frac{4\sqrt{10}}{19\sqrt{19}}
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-8" data-year="2025">
+                <div class="problem-header"><span class="badge">2025년</span></div>
+                <div class="problem-title">8번. 이변수함수의 최댓값과 최솟값</div>
+                <div class="problem-body">
+                    영역 $$D = \left\{\left(x,y\right) | x \ge 0, y \ge 0, x^2 +y^2 \le 4 \right\}$$에서 $$f(x, y) = x^4 +y^4 - 4xy$$의 최댓값과 최솟값을 구하여라.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>최댓값: $16$, 최솟값: $-2$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        f(1,1) = -2, \quad \text{경계 및 원호에서의 최댓값 } = 16 \implies \text{최댓값}: 16, \; \text{최솟값}: -2
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-9" data-year="2025">
+                <div class="problem-header"><span class="badge">2025년</span></div>
+                <div class="problem-title">9번. 조건부 최댓값과 최솟값</div>
+                <div class="problem-body">
+                    $$x + y + z = 2$$와 $$xz = 1$$을 만족할 때, 함수 $$f(x, y, z) = x^2 + y^2 + z^2$$의 최댓값과 최솟값을 구하시오.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>최댓값: 존재하지 않음, 최솟값: $2$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        f(x,y,z) = 2(y-1)^2 \implies \text{최댓값}: \text{존재하지 않음}, \; \text{최솟값}: 2 \; (y=0 \text{ 일 때})
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-10" data-year="2025">
+                <div class="problem-header"><span class="badge">2025년</span></div>
+                <div class="problem-title">10번. 적분 순서 변경</div>
+                <div class="problem-body">
+                    $$m \ne 0$$이고 $x \in \mathbb{R}$일 때, $$\int_0^x \int_0^u \frac{e^{m(x-t)}}{x-t}\,dt du$$를 계산하시오.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>$$\frac{e^{mx} - 1}{m}$$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        \iint = \int_{0}^{x} \int_{t}^{x} \frac{e^{m(x-t)}}{x-t} \, du \, dt = \frac{e^{mx} - 1}{m}
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-11" data-year="2025">
+                <div class="problem-header"><span class="badge">2025년</span></div>
+                <div class="problem-title">11번. 영역 분할 이중적분</div>
+                <div class="problem-body">
+                    $$\max \{a, b\} = \begin{cases} b & a \le b \\ a & b \le a \end{cases}$$라 할 때, $$\int_0^9 \int_0^5 e^{\max \left\{ 25x^2 , 81y^2 \right\}}\,dy dx$$를 구하여라.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>$$\frac{e^{2025} - 1}{45}$$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        I_1 + I_2 = \int_0^9 \frac{5}{9}x e^{25x^2} \,dx + \int_0^5 \frac{9}{5}y e^{81y^2} \,dy = \frac{e^{2025}-1}{45}
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 오른쪽에 고정되는 바로가기 목차 (Quick Nav) -->
+    <nav class="quick-nav">
+        <div class="quick-nav-title">문제 바로가기</div>
+        <ul class="quick-nav-list" id="quick-nav-list">
+            <!-- 자바스크립트로 자동으로 생성됩니다 -->
+        </ul>
+    </nav>
+
+</div>
+
+<!-- 자바스크립트 -->
+<script>
+    // 1. KaTeX 수식 렌더링
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+            delimiters: [
+                {left: "$$", right: "$$", display: true},
+                {left: "$", right: "$", display: false}
+            ],
+            throwOnError: false
+        });
+
+        // 처음 실행 시 2025년을 기본 선택 상태로 필터링 적용
+        filterYear('2025');
+    });
+
+    // 2. 문제 목록을 읽어와서 오른쪽 목차 자동 생성하는 함수
+    function generateQuickNav() {
+        const navList = document.getElementById('quick-nav-list');
+        navList.innerHTML = '';
+
+        const visibleProblems = document.querySelectorAll('.problem-card');
+        
+        visibleProblems.forEach(card => {
+            if (card.style.display !== 'none') {
+                const titleText = card.querySelector('.problem-title').innerText;
+                const shortTitle = titleText.split('.')[0]; 
+
+                const li = document.createElement('li');
+                li.className = 'quick-nav-item';
+                li.innerHTML = `<a href="#${card.id}">${shortTitle}</a>`;
+                navList.appendChild(li);
+            }
+        });
+    }
+
+    // 3. 년도별 필터링 기능 (초기 선택: 2025년)
+    function filterYear(year) {
+        const problems = document.querySelectorAll('.problem-card');
+        const buttons = document.querySelectorAll('.filter-btn');
+
+        buttons.forEach(btn => {
+            if (btn.getAttribute('onclick').includes(year)) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+
+        problems.forEach(problem => {
+            if (problem.getAttribute('data-year') === year) {
+                problem.style.display = 'block';
+            } else {
+                problem.style.display = 'none';
+            }
+        });
+
+        generateQuickNav();
+    }
+
+    // 4. 모든 풀이 한 번에 열기/접기 기능
+    let allOpen = false;
+    function toggleAllSolutions() {
+        const detailsList = document.querySelectorAll('details');
+        allOpen = !allOpen;
+        
+        detailsList.forEach(detail => {
+            detail.open = allOpen;
+        });
+    }
+</script>
+
+</body>
+</html>
