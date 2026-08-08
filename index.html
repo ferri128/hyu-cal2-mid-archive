@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>한양대학교 미분적분학 2 중간 기출문제 및 풀이 아카이브</title>
+    <title>한양대학교 미분적분학 2 중간고사 기출문제 및 풀이</title>
     
     <!-- KaTeX 수식 라이브러리 CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
@@ -13,13 +13,11 @@
     <style>
         :root {
             --primary-color: #1d4ed8;
-            --primary-hover: #1e40af;
             --bg-color: #f1f5f9;
             --card-bg: #ffffff;
             --text-main: #0f172a;
             --text-sub: #475569;
             --border-color: #e2e8f0;
-            
             --answer-bg: #f0fdf4;
             --answer-border: #86efac;
             --answer-text: #14532d;
@@ -27,13 +25,8 @@
             --details-bg: #f8fafc;
         }
 
-        * {
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -44,7 +37,6 @@
             padding: 40px 16px;
         }
 
-        /* 메인 레이아웃 설정 */
         .layout-wrapper {
             max-width: 1100px;
             margin: 0 auto;
@@ -54,10 +46,7 @@
             position: relative;
         }
 
-        .container {
-            flex: 1;
-            min-width: 0;
-        }
+        .container { flex: 1; min-width: 0; }
 
         header {
             text-align: center;
@@ -70,17 +59,11 @@
             margin: 0 0 10px 0;
             font-size: 1.85rem;
             font-weight: 800;
-            letter-spacing: -0.02em;
             color: var(--text-main);
         }
 
-        header p {
-            margin: 0;
-            color: var(--text-sub);
-            font-size: 0.95rem;
-        }
+        header p { margin: 0; color: var(--text-sub); font-size: 0.95rem; }
 
-        /* 제어 영역 */
         .controls-wrapper {
             display: flex;
             flex-direction: column;
@@ -100,7 +83,7 @@
             background-color: var(--card-bg);
             color: var(--text-sub);
             border: 1px solid var(--border-color);
-            padding: 7px 20px;
+            padding: 7px 18px;
             border-radius: 9999px;
             cursor: pointer;
             font-weight: 600;
@@ -128,7 +111,6 @@
             padding: 6px 14px;
         }
 
-        /* 사이드바 바로가기 목차 스타일 (PC) */
         .quick-nav {
             position: sticky;
             top: 40px;
@@ -145,8 +127,6 @@
             font-size: 0.85rem;
             font-weight: 800;
             color: var(--text-sub);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
             margin-bottom: 12px;
             padding-bottom: 8px;
             border-bottom: 1px solid var(--border-color);
@@ -171,7 +151,6 @@
             font-size: 0.85rem;
             font-weight: 600;
             border-radius: 6px;
-            transition: all 0.15s ease;
         }
 
         .quick-nav-item a:hover {
@@ -179,20 +158,14 @@
             color: var(--primary-color);
         }
 
-        /* 문제 카드 스타일 */
         .problem-card {
             background: var(--card-bg);
             border-radius: 12px;
             padding: 28px;
             margin-bottom: 24px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
             border: 1px solid var(--border-color);
-            transition: transform 0.15s ease, box-shadow 0.15s ease;
             scroll-margin-top: 40px;
-        }
-
-        .problem-card:hover {
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.03);
         }
 
         .problem-header {
@@ -209,23 +182,19 @@
             border-radius: 9999px;
             font-size: 0.8rem;
             font-weight: 700;
-            letter-spacing: 0.02em;
         }
 
         .problem-title {
             font-size: 1.15rem;
             font-weight: 700;
             margin-bottom: 14px;
-            color: var(--text-main);
         }
 
         .problem-body {
             margin-bottom: 20px;
-            font-size: 1rem;
             overflow-x: auto;
         }
 
-        /* 정답 영역 스타일 */
         .answer-box {
             background-color: var(--answer-bg);
             border: 1px solid var(--answer-border);
@@ -250,18 +219,14 @@
             flex-shrink: 0;
         }
 
-        /* 풀이 접기/펴기 */
         details {
             background-color: var(--details-bg);
             border: 1px solid var(--border-color);
             border-radius: 10px;
             padding: 12px 16px;
-            transition: background-color 0.2s;
         }
 
-        details[open] {
-            background-color: #ffffff;
-        }
+        details[open] { background-color: #ffffff; }
 
         summary {
             font-weight: 600;
@@ -271,27 +236,16 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            font-size: 0.95rem;
-        }
-
-        summary:hover {
-            color: var(--primary-color);
         }
 
         summary::after {
             content: "▼";
             font-size: 0.75rem;
-            transition: transform 0.2s ease;
             color: #94a3b8;
         }
 
-        details[open] summary::after {
-            transform: rotate(180deg);
-        }
-
-        summary::-webkit-details-marker {
-            display: none;
-        }
+        details[open] summary::after { transform: rotate(180deg); }
+        summary::-webkit-details-marker { display: none; }
 
         .solution-body {
             margin-top: 14px;
@@ -300,73 +254,47 @@
             overflow-x: auto;
         }
 
-        /* 모바일 대응 (화면 폭 900px 이하) */
         @media (max-width: 900px) {
-            .layout-wrapper {
-                flex-direction: column;
-            }
-
+            .layout-wrapper { flex-direction: column; }
             .quick-nav {
                 position: fixed;
-                bottom: 12px;
-                left: 12px;
-                right: 12px;
-                top: auto;
-                width: auto;
-                z-index: 100;
-                padding: 10px 14px;
-                border-radius: 30px;
-                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+                bottom: 12px; left: 12px; right: 12px; top: auto;
+                width: auto; z-index: 100;
+                padding: 10px 14px; border-radius: 30px;
                 background: rgba(255, 255, 255, 0.95);
                 backdrop-filter: blur(8px);
             }
-
-            .quick-nav-title {
-                display: none;
-            }
-
-            .quick-nav-list {
-                flex-direction: row;
-                overflow-x: auto;
-                max-height: none;
-                gap: 6px;
-                white-space: nowrap;
-            }
-
-            .quick-nav-item a {
-                background: var(--bg-color);
-                padding: 4px 12px;
-                border-radius: 20px;
-                font-size: 0.8rem;
-            }
+            .quick-nav-title { display: none; }
+            .quick-nav-list { flex-direction: row; overflow-x: auto; white-space: nowrap; }
+            .quick-nav-item a { background: var(--bg-color); border-radius: 20px; }
         }
     </style>
 </head>
 <body>
 
 <div class="layout-wrapper">
-    
-    <!-- 메인 컨텐츠 영역 -->
     <div class="container">
         <header>
-            <h1>한양대학교 미분적분학 2 중간 기출문제</h1>
-            <p>년도별 기출문제 · 정답 및 상세 풀이</p>
+            <h1>한양대학교 미분적분학 2 중간고사</h1>
+            <p>기출문제 및 상세 풀이 아카이브</p>
         </header>
 
-        <!-- 제어 영역 -->
         <div class="controls-wrapper">
             <div class="filter-container">
                 <button class="filter-btn active" onclick="filterYear('2025')">2025년</button>
                 <button class="filter-btn" onclick="filterYear('2024')">2024년</button>
                 <button class="filter-btn" onclick="filterYear('2023')">2023년</button>
+                <button class="filter-btn" onclick="filterYear('2022')">2022년</button>
+                <button class="filter-btn" onclick="filterYear('2021')">2021년</button>
+                <button class="filter-btn" onclick="filterYear('2017')">2017년</button>
             </div>
             <button class="toggle-all-btn" onclick="toggleAllSolutions()">💡 모든 풀이 한번에 열기/접기</button>
         </div>
 
-        <!-- 문제 목록 시작 -->
         <div id="problem-list">
 
-            <div class="problem-card" id="prob-1" data-year="2025">
+            <!-- 2025년 -->
+            <div class="problem-card" id="prob-2025-1" data-year="2025">
                 <div class="problem-header"><span class="badge">2025년</span></div>
                 <div class="problem-title">1번. 벡터 함수의 정적분</div>
                 <div class="problem-body">
@@ -380,15 +308,14 @@
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
-                        \int 
-                        &= \frac{t^4}{4} \mathbf{i} - 4\cos t \mathbf{j} - 2e^{2t}\mathbf{k} \Bigg|_0^\pi \\
+                        \int &= \frac{t^4}{4} \mathbf{i} - 4\cos t \mathbf{j} - 2e^{2t}\mathbf{k} \Bigg|_0^\pi \\
                         & = \frac{\pi^4}{4} \mathbf{i} + 4 \mathbf{j} - 2 \left( e^{2\pi}-1 \right)\mathbf{k}
                         \end{align*}$$
                     </div>
                 </details>
             </div>
 
-            <div class="problem-card" id="prob-2-1" data-year="2025">
+            <div class="problem-card" id="prob-2025-2-1" data-year="2025">
                 <div class="problem-header"><span class="badge">2025년</span></div>
                 <div class="problem-title">2번 (1). 그래디언트 구하기</div>
                 <div class="problem-body">
@@ -411,7 +338,7 @@
                 </details>
             </div>
 
-            <div class="problem-card" id="prob-2-2" data-year="2025">
+            <div class="problem-card" id="prob-2025-2-2" data-year="2025">
                 <div class="problem-header"><span class="badge">2025년</span></div>
                 <div class="problem-title">2번 (2). 방향도함수 구하기</div>
                 <div class="problem-body">
@@ -429,13 +356,14 @@
                         \nabla f(x,y) &= \left\langle \frac{1}{y}, \, -\frac{x}{y^2} \right\rangle \\
                         \nabla f(3,1) &= \left\langle \frac{1}{1}, \, -\frac{3}{1^2} \right\rangle = \langle 1, -3 \rangle \\
                         \mathbf{u} &= \frac{\langle 1, 1 \rangle}{\|\langle 1, 1 \rangle\|} = \left\langle \frac{1}{\sqrt{2}}, \, \frac{1}{\sqrt{2}} \right\rangle \\
-                        D_{\mathbf{u}}f(3,1) &= \nabla f(3,1) \cdot \mathbf{u} = \langle 1, -3 \rangle \cdot \left\langle \frac{1}{\sqrt{2}}, \, \frac{1}{\sqrt{2}} \right\rangle = -\sqrt{2}
+                        D_{\mathbf{u}}f(3,1) &= \nabla f(3,1) \cdot \mathbf{u} = \langle 1, -3 \rangle \cdot \left\langle \frac{1}{\sqrt{2}}, \, \frac{1}{\sqrt{2}} \right\rangle \\
+                        &= 1 \cdot \frac{1}{\sqrt{2}} + (-3) \cdot \frac{1}{\sqrt{2}} = -\frac{2}{\sqrt{2}} = -\sqrt{2}
                         \end{align*}$$
                     </div>
                 </details>
             </div>
 
-            <div class="problem-card" id="prob-2-3" data-year="2025">
+            <div class="problem-card" id="prob-2025-2-3" data-year="2025">
                 <div class="problem-header"><span class="badge">2025년</span></div>
                 <div class="problem-title">2번 (3). 이계 편도함수 구하기</div>
                 <div class="problem-body">
@@ -451,13 +379,15 @@
                         $$\begin{align*}
                         g(x,y) &= e^{xy} \log(y^2) \\
                         g_x &= \frac{\partial g}{\partial x} = y e^{xy} \log(y^2) \\
-                        g_{xy} &= \frac{\partial}{\partial y} \left[ y e^{xy} \log(y^2) \right] = e^{xy} \left[ (1 + xy)\log(y^2) + 2 \right]
+                        g_{xy} &= \frac{\partial}{\partial y}\left(\frac{\partial g}{\partial x}\right) = \frac{\partial}{\partial y} \left[ y e^{xy} \log(y^2) \right] \\
+                        &= (1 \cdot e^{xy} + y \cdot x e^{xy}) \log(y^2) + y e^{xy} \cdot \frac{2y}{y^2} \\
+                        &= e^{xy}(1 + xy)\log(y^2) + 2e^{xy} = e^{xy} \left[ (1 + xy)\log(y^2) + 2 \right]
                         \end{align*}$$
                     </div>
                 </details>
             </div>
 
-            <div class="problem-card" id="prob-3" data-year="2025">
+            <div class="problem-card" id="prob-2025-3" data-year="2025">
                 <div class="problem-header"><span class="badge">2025년</span></div>
                 <div class="problem-title">3번. 이중적분 계산</div>
                 <div class="problem-body">
@@ -471,17 +401,19 @@
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
-                        \int_{0}^{\pi} \int_{-2}^{2} x^2 \sin y \, dx dy &= \left( \int_{-2}^{2} x^2 \, dx \right) \left( \int_{0}^{\pi} \sin y \, dy \right) = \frac{32}{3}
+                        \int_{0}^{\pi} \int_{-2}^{2} x^2 \sin y \, dx dy &= \left( \int_{-2}^{2} x^2 \, dx \right) \left( \int_{0}^{\pi} \sin y \, dy \right) \\
+                        &= \left[ \frac{1}{3}x^3 \right]_{-2}^{2} \cdot \left[ -\cos y \right]_{0}^{\pi} \\
+                        &= \left( \frac{16}{3} \right) \cdot \left( -(-1) + 1 \right) = \frac{16}{3} \cdot 2 = \frac{32}{3}
                         \end{align*}$$
                     </div>
                 </details>
             </div>
 
-            <div class="problem-card" id="prob-4-1" data-year="2025">
+            <div class="problem-card" id="prob-2025-4-1" data-year="2025">
                 <div class="problem-header"><span class="badge">2025년</span></div>
                 <div class="problem-title">4번 (1). 벡터함수의 정의역</div>
                 <div class="problem-body">
-                    $$\mathbf{r}(t) = \left\langle e^t , \sqrt{4-t^2}, \frac{t-t^2}{t \ln t } \right\rangle$$의 정의역을 구하여라.
+                    $$\mathbf{r}(t) = \left\langle e^t , \sqrt{4-t^2}, \frac{t-t^2}{t \ln t } \right\rangle$$라 하자. $\mathbf{r}(t)$의 정의역을 구하여라.
                 </div>
                 <div class="answer-box">
                     <span class="answer-label">정답</span>
@@ -491,20 +423,20 @@
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
-                        f(t) &= e^t &\text{정의역}: ~& (-\infty , \infty)\\
-                        g(t) &= \sqrt{4-t^2} &\text{정의역}:~& [-2,2] \\
-                        h(t) &= \frac{t-t^2}{t \ln t} &\text{정의역}:~&(0, 1) \cup (1, \infty) \\
-                        \mathbf{r}(t) &&\text{정의역}:~& (0,1) \cup (1,2]
+                        f(t) &= e^t &\text{Domain}: ~& (-\infty , \infty)\\
+                        g(t) &= \sqrt{4-t^2} &\text{Domain}:~& [-2,2] \\
+                        h(t) &= \frac{t-t^2}{t \ln t} &\text{Domain}:~&(0, 1) \cup (1, \infty) \\
+                        \mathbf{r}(t) &&\text{Domain}:~& (0,1) \cup (1,2]
                         \end{align*}$$
                     </div>
                 </details>
             </div>
 
-            <div class="problem-card" id="prob-4-2" data-year="2025">
+            <div class="problem-card" id="prob-2025-4-2" data-year="2025">
                 <div class="problem-header"><span class="badge">2025년</span></div>
                 <div class="problem-title">4번 (2). 벡터함수의 극한</div>
                 <div class="problem-body">
-                    $$\mathbf{r}(t) = \left\langle e^t , \sqrt{4-t^2}, \frac{t-t^2}{t \ln t } \right\rangle$$일 때, $$\lim_{t \to 1}{\mathbf{r}(t)}$$를 구하여라.
+                    $$\lim_{t \to 1}{\mathbf{r}(t)}$$를 구하여라. 만약 없다면 그 이유를 밝혀라.
                 </div>
                 <div class="answer-box">
                     <span class="answer-label">정답</span>
@@ -514,17 +446,18 @@
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
-                        \lim_{t \to 1} \mathbf{r}(t) &= \left\langle \lim_{t \to 1} e^t, \, \lim_{t \to 1} \sqrt{4-t^2}, \, \lim_{t \to 1} \frac{t-t^2}{t \ln t} \right\rangle = \left\langle e, \, \sqrt{3}, \, -1 \right\rangle
+                        \lim_{t \to 1} \mathbf{r}(t) &= \left\langle \lim_{t \to 1} e^t, \, \lim_{t \to 1} \sqrt{4-t^2}, \, \lim_{t \to 1} \frac{t-t^2}{t \ln t} \right\rangle \\
+                        &= \left\langle e, \, \sqrt{3}, \, \lim_{t \to 1} \frac{1-t}{\ln t} \right\rangle = \left\langle e, \, \sqrt{3}, \, \lim_{t \to 1} \frac{-1}{\frac{1}{t}} \right\rangle = \left\langle e, \, \sqrt{3}, \, -1 \right\rangle
                         \end{align*}$$
                     </div>
                 </details>
             </div>
 
-            <div class="problem-card" id="prob-5" data-year="2025">
+            <div class="problem-card" id="prob-2025-5" data-year="2025">
                 <div class="problem-header"><span class="badge">2025년</span></div>
                 <div class="problem-title">5번. 접평면의 방정식</div>
                 <div class="problem-body">
-                    방정식 $$z=1+\sin(2x +3y)$$의 점 $$\left( \frac{\pi}{6}, 0 \right)$$에서 수직인 면(접평면)의 방정식을 구하여라.
+                    다음 방정식 $$z=1+\sin(2x +3y)$$의 점 $$\left( \frac{\pi}{6}, 0 \right)$$에서 수직인 면의 방정식을 구하여라.
                 </div>
                 <div class="answer-box">
                     <span class="answer-label">정답</span>
@@ -534,14 +467,17 @@
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
-                        z_0 &= 1 + \frac{\sqrt{3}}{2}, \quad f_x\left(\frac{\pi}{6}, 0\right) = 1, \quad f_y\left(\frac{\pi}{6}, 0\right) = \frac{3}{2} \\
+                        z_0 &= 1 + \sin\left(2 \cdot \frac{\pi}{6} + 3 \cdot 0\right) = 1 + \frac{\sqrt{3}}{2} \\
+                        f_x(x,y) &= 2\cos(2x+3y) \implies f_x\left(\frac{\pi}{6}, 0\right) = 2\cos\left(\frac{\pi}{3}\right) = 1 \\
+                        f_y(x,y) &= 3\cos(2x+3y) \implies f_y\left(\frac{\pi}{6}, 0\right) = 3\cos\left(\frac{\pi}{3}\right) = \frac{3}{2} \\
+                        z - z_0 &= f_x\left(\frac{\pi}{6}, 0\right)\left(x - \frac{\pi}{6}\right) + f_y\left(\frac{\pi}{6}, 0\right)(y - 0) \\
                         z &= x + \frac{3}{2}y - \frac{\pi}{6} + 1 + \frac{\sqrt{3}}{2}
                         \end{align*}$$
                     </div>
                 </details>
             </div>
 
-            <div class="problem-card" id="prob-6" data-year="2025">
+            <div class="problem-card" id="prob-2025-6" data-year="2025">
                 <div class="problem-header"><span class="badge">2025년</span></div>
                 <div class="problem-title">6번. 음함수의 편미분</div>
                 <div class="problem-body">
@@ -555,13 +491,16 @@
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
-                        F_x(1,1,1) = 1, \quad F_y(1,1,1) = 1, \quad F_z(1,1,1) = 1 \implies \frac{\partial z}{\partial x}+ \frac{\partial z}{\partial y} = -2
+                        F_x &= yz + y\sin(xy - y + z^2 - 1) \implies F_x(1,1,1) = 1 \cdot 1 + 0 = 1 \\
+                        F_y &= xz + (x-1)\sin(xy - y + z^2 - 1) \implies F_y(1,1,1) = 1 \cdot 1 + 0 = 1 \\
+                        F_z &= xy + 2z\sin(xy - y + z^2 - 1) \implies F_z(1,1,1) = 1 \cdot 1 + 0 = 1 \\
+                        \frac{\partial z}{\partial x}+ \frac{\partial z}{\partial y} &= -\frac{F_x}{F_z} -\frac{F_y}{F_z} = -\frac{1}{1}-\frac{1}{1} = -2
                         \end{align*}$$
                     </div>
                 </details>
             </div>
 
-            <div class="problem-card" id="prob-7" data-year="2025">
+            <div class="problem-card" id="prob-2025-7" data-year="2025">
                 <div class="problem-header"><span class="badge">2025년</span></div>
                 <div class="problem-title">7번. 매개변수 곡선의 곡률</div>
                 <div class="problem-body">
@@ -575,14 +514,18 @@
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
-                        \mathbf{r}'(1) &= \left\langle 3, 1, 3 \right\rangle, \quad \mathbf{r}''(1) = \left\langle 2, 2, 6 \right\rangle \\
+                        \mathbf{n} &= \left\langle 0,-3,1 \right\rangle \\
+                        \mathbf{r}'(t) \cdot \mathbf{n} &= -3(2t-1)+3t^2 = 0 \implies t=1 \\
+                        \mathbf{r}'(1) &= \left\langle 3, 1, 3 \right\rangle \\
+                        \mathbf{r}''(1) &= \left\langle 2, 2, 6 \right\rangle \\
+                        \mathbf{r}'(1) \times \mathbf{r}''(1) &= \langle 0, -12, 4 \rangle \\
                         \kappa &= \frac{\|\mathbf{r}'(1) \times \mathbf{r}''(1)\|}{\|\mathbf{r}'(1)\|^3} = \frac{4\sqrt{10}}{19\sqrt{19}}
                         \end{align*}$$
                     </div>
                 </details>
             </div>
 
-            <div class="problem-card" id="prob-8" data-year="2025">
+            <div class="problem-card" id="prob-2025-8" data-year="2025">
                 <div class="problem-header"><span class="badge">2025년</span></div>
                 <div class="problem-title">8번. 이변수함수의 최댓값과 최솟값</div>
                 <div class="problem-body">
@@ -590,43 +533,55 @@
                 </div>
                 <div class="answer-box">
                     <span class="answer-label">정답</span>
-                    <span>최댓값: $16$, 최솟값: $-2$</span>
+                    <span>Maximum: $16$, Minimum: $-2$</span>
                 </div>
                 <details>
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
-                        f(1,1) = -2, \quad \text{경계 및 원호에서의 최댓값 } = 16 \implies \text{최댓값}: 16, \; \text{최솟값}: -2
+                        f_x = 4x^3 -4y&, \, f_y =4y^3-4x \\
+                        f_x =0&, f_y = 0 \implies x=1 \implies f(1,1) = -2 \\
+                        f(0, y) &= y^4 \, (0\le y \le 2) \\
+                        f(x, 0) &= x^4 \, (0\le x \le 2) \\
+                        -2 \le f &\le 16 \\
+                        x=r \cos \theta&, \, y=r\sin \theta \implies x^2+y^2=r^2=4, \, 0 \le \theta \le \pi/2 \\
+                        f(x,y) &= (x^2 +y^2)^2 - 2x^2 y^2 - 4xy = 16-8\sin^2 2\theta - 8\sin 2\theta \\
+                        0 \le \sin 2\theta &\le 1 \implies 0\le f \le 16 \\
+                        \text{Maximum}&: 16, \quad \text{Minimum}: -2
                         \end{align*}$$
                     </div>
                 </details>
             </div>
 
-            <div class="problem-card" id="prob-9" data-year="2025">
+            <div class="problem-card" id="prob-2025-9" data-year="2025">
                 <div class="problem-header"><span class="badge">2025년</span></div>
                 <div class="problem-title">9번. 조건부 최댓값과 최솟값</div>
                 <div class="problem-body">
-                    $$x + y + z = 2$$와 $$xz = 1$$을 만족할 때, 함수 $$f(x, y, z) = x^2 + y^2 + z^2$$의 최댓값과 최솟값을 구하시오.
+                    $$x + y + z = 2$$와 $$xz = 1$$을 만족할 때, 함수 $$f(x, y, z) = x^2 + y^2 + z^2$$의 최댓값과 최솟값이 존재한다면 이를 구하시오.
                 </div>
                 <div class="answer-box">
                     <span class="answer-label">정답</span>
-                    <span>최댓값: 존재하지 않음, 최솟값: $2$</span>
+                    <span>Maximum: 존재하지 않음, Minimum: $2$</span>
                 </div>
                 <details>
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
-                        f(x,y,z) = 2(y-1)^2 \implies \text{최댓값}: \text{존재하지 않음}, \; \text{최솟값}: 2 \; (y=0 \text{ 일 때})
+                        f(x,y,z) &= (x+z)^2 -2xz+y^2 = 2y^2 -4y +2 = 2(y-1)^2 \\
+                        |x+z| &= |x| + |z| \ge 2\sqrt{|x||z|} = 2\sqrt{|xz|} = 2 \\
+                        x+z < -2&, \, x+z > 2 \\
+                        y &= 2-(x+z) \implies y < -4, \, y > 0 \\
+                        \text{Maximum}&: \text{존재하지 않음}, \quad \text{Minimum}: 2
                         \end{align*}$$
                     </div>
                 </details>
             </div>
 
-            <div class="problem-card" id="prob-10" data-year="2025">
+            <div class="problem-card" id="prob-2025-10" data-year="2025">
                 <div class="problem-header"><span class="badge">2025년</span></div>
                 <div class="problem-title">10번. 적분 순서 변경</div>
                 <div class="problem-body">
-                    $$m \ne 0$$이고 $x \in \mathbb{R}$일 때, $$\int_0^x \int_0^u \frac{e^{m(x-t)}}{x-t}\,dt du$$를 계산하시오.
+                    $$m \ne 0$$이고 $x \in \mathbb{R}$일 때, $$\int_0^x \int_0^u \frac{e^{m(x-t)}}{x-t}\,dt du$$
                 </div>
                 <div class="answer-box">
                     <span class="answer-label">정답</span>
@@ -636,17 +591,20 @@
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
-                        \iint = \int_{0}^{x} \int_{t}^{x} \frac{e^{m(x-t)}}{x-t} \, du \, dt = \frac{e^{mx} - 1}{m}
+                        \iint&= \int_{0}^{x} \int_{t}^{x} \frac{e^{m(x-t)}}{x-t} \, du \, dt  \\
+                        &= \int_{0}^{x} \frac{e^{m(x-t)}}{x-t} \bigg( \int_{t}^{x} 1 \, du \bigg) \, dt \\
+                        &= \int_{0}^{x} \frac{e^{m(x-t)}}{x-t} \cdot (x-t) \, dt \\
+                        &= \int_{0}^{x} e^{m(x-t)} \, dt = \left[ -\frac{1}{m} e^{m(x-t)} \right]_{0}^{x} = \frac{e^{mx} - 1}{m}
                         \end{align*}$$
                     </div>
                 </details>
             </div>
 
-            <div class="problem-card" id="prob-11" data-year="2025">
+            <div class="problem-card" id="prob-2025-11" data-year="2025">
                 <div class="problem-header"><span class="badge">2025년</span></div>
                 <div class="problem-title">11번. 영역 분할 이중적분</div>
                 <div class="problem-body">
-                    $$\max \{a, b\} = \begin{cases} b & a \le b \\ a & b \le a \end{cases}$$라 할 때, $$\int_0^9 \int_0^5 e^{\max \left\{ 25x^2 , 81y^2 \right\}}\,dy dx$$를 구하여라.
+                    $$\max \{a, b\} = \begin{cases} b & a \le b \\ a & b \le a \end{cases}$$이라 할 때, $$\int_0^9 \int_0^5 e^{\max \left\{ 25x^2 , 81y^2 \right\}}\,dy dx$$를 구하여라.
                 </div>
                 <div class="answer-box">
                     <span class="answer-label">정답</span>
@@ -656,7 +614,1169 @@
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
-                        I_1 + I_2 = \int_0^9 \frac{5}{9}x e^{25x^2} \,dx + \int_0^5 \frac{9}{5}y e^{81y^2} \,dy = \frac{e^{2025}-1}{45}
+                        25x^2 &= 81y^2 \implies y = \frac{5}{9}x \quad (x, y \ge 0) \\
+                        I_1 \left(y \le \frac{5}{9}x\right)+ I_2 \left(y \ge \frac{5}{9}x\right) 
+                        &= \int_0^9 \int_0^{\frac{5}{9}x} e^{25x^2} \,dy \,dx + \int_0^5 \int_0^{\frac{9}{5}y} e^{81y^2} \,dx \,dy \\
+                        &= \int_0^9 \frac{5}{9}x e^{25x^2} \,dx + \int_0^5 \frac{9}{5}y e^{81y^2} \,dy \\
+                        &= \left[ \frac{1}{90}e^{25x^2} \right]_0^9 + \left[ \frac{1}{90}e^{81y^2} \right]_0^5 = \frac{e^{2025}-1}{90} + \frac{e^{2025}-1}{90} = \frac{e^{2025} - 1}{45}
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <!-- 2024년 -->
+            <div class="problem-card" id="prob-2024-1" data-year="2024">
+                <div class="problem-header"><span class="badge">2024년</span></div>
+                <div class="problem-title">1번. 곡선의 길이</div>
+                <div class="problem-body">
+                    다음 곡선 $$\mathbf{r}(t) = \left(t\cos t\right) \mathbf{i} + \left(t\sin t\right)\mathbf{j}+\left( \frac{2\sqrt2}{3}\right)t^{\frac{3}{2}} \mathbf{k}, \quad (0\le t \le 1)$$의 길이를 구하시오.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>$$\frac{3}{2}$$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        \mathbf{r}'(t) &= \left( \cos t - t \sin t \right)\mathbf{i} +\left( \sin t + t\cos t \right) \mathbf{j} +\sqrt{2t} \mathbf{k} \\
+                        L &= \int_0^1 \left\| \mathbf{r}'(t) \right\| \, dt = \int_0^1\sqrt{t^2+2t+1}\,dt \\
+                        &= \left[ \frac{t^2}{2}+t\right]_0^1 = \frac{3}{2}
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-2024-2" data-year="2024">
+                <div class="problem-header"><span class="badge">2024년</span></div>
+                <div class="problem-title">2번. 극한값 구하기</div>
+                <div class="problem-body">
+                    다음 극한 $$\lim_{(x,y) \to(0,0)}\tan^{-1}\left( \frac{|x|+|y|}{x^2 +y^2}\right)$$이 존재하면 구하시오. 존재하지 않으면 존재하지 않음을 보이시오.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>$$\frac{\pi}{2}$$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        \frac{|x|+|y|}{x^2 + y^2} &= \frac{|r \cos \theta| + |r \sin \theta|}{r^2 \cos^2 \theta + r^2 \sin^2 \theta} = \frac{|\cos \theta| + |\sin \theta|}{r} \\
+                        1 \le |\cos \theta| &+ |\sin \theta| \le \sqrt{2} \implies \lim_{r \to 0^+} \frac{|\cos \theta| + |\sin \theta|}{r} = \infty \\
+                        \lim_{(x,y) \to(0,0)}\tan^{-1}\left( \frac{|x|+|y|}{x^2 +y^2}\right) &= \lim_{u \to \infty} \tan^{-1}(u) = \frac{\pi}{2}
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-2024-3-1" data-year="2024">
+                <div class="problem-header"><span class="badge">2024년</span></div>
+                <div class="problem-title">3번 (1). 교선의 곡률이 최대가 되는 점</div>
+                <div class="problem-body">
+                    $C$를 쌍곡기둥 $x^2 - y^2 =1$과 곡면 $z= \ln(x+y)$의 교선이라 할 때, $C$의 곡률이 최대가 되는 점을 구하시오.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>$$(1, 0, 0)$$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        x+y=t&, \, x-y = \frac{1}{t} \implies C: \,x = \frac{1}{2}\left( t+\frac{1}{t}\right), \, y = \frac{1}{2}\left( t- \frac{1}{t}\right),\, z=\ln t \, (t>0) \\
+                        \mathbf{r}(t)&=\left\langle \frac{1}{2}\left( t+\frac{1}{t}\right), \frac{1}{2}\left( t-\frac{1}{t}\right), \ln t \right\rangle \\
+                        \mathbf{r}'(t)&=\left\langle \frac{1}{2}\left( 1-\frac{1}{t^2}\right), \frac{1}{2}\left( 1+\frac{1}{t^2}\right), \frac{1}{t} \right\rangle \\
+                        \mathbf{r}''(t)&=\left\langle \frac{1}{t^3}, - \frac{1}{t^3}, -\frac{1}{t^2}\right\rangle \\
+                        \mathbf{r}'(t)\times \mathbf{r}''(t) & = \left\langle \frac{1}{2t^4} - \frac{1}{2t^2}, \, \frac{1}{2t^4} + \frac{1}{2t^2}, \, -\frac{1}{t^3} \right\rangle \\
+                        \kappa (t) & = \frac{\|\mathbf{r}'(t)\times \mathbf{r}''(t)\|}{\|\mathbf{r}'(t)\|} = \frac{2t^2}{(t^2+1)^2} \\
+                        \frac{d \kappa}{dt} &= \frac{4t (1-t^2)}{(t^2 +1)^3} = 0 \implies t = 1 \implies \mathbf{r}(1) = (1, 0, 0)
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-2024-3-2" data-year="2024">
+                <div class="problem-header"><span class="badge">2024년</span></div>
+                <div class="problem-title">3번 (2). 접평면 구하기</div>
+                <div class="problem-body">
+                    (1)의 점에서 접하는 평면을 구하시오.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>$$y = z$$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        \mathbf{r}'(1) &= \left\langle 0, \, 1, \, 1 \right\rangle \\
+                        \mathbf{r}''(1) &= \left\langle 1, \, -1, \, -1 \right\rangle \\
+                        \mathbf{n} &= \mathbf{r}'(1) \times \mathbf{r}''(1) = \left\langle 0, \, 1, \, -1 \right\rangle \\
+                        \Pi &: 0 \cdot (x - 1) + 1 \cdot (y - 0) - 1 \cdot (z - 0) = 0 \implies y - z = 0 \implies y = z
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-2024-4" data-year="2024">
+                <div class="problem-header"><span class="badge">2024년</span></div>
+                <div class="problem-title">4번. 정의역과 치역</div>
+                <div class="problem-body">
+                    다음 함수 $$f(x,y) = \frac{\sqrt{x^2 +y^2 -3}}{\ln (4-x^2-y^2)}$$의 정의역과 함숫값의 범위를 구하여라.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>정의역: $\{(x,y) \in \mathbb{R}^2 \mid 3 \le x^2 + y^2 < 4\}$, 치역: $(-\infty, 0)$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        u &= x^2 +y^2 , \, 3 \le u < 4 \implies \text{Domain}: \left\{ (x,y) \in \mathbb{R}^2 \mid 3\le x^2 +y^2 < 4 \right\} \\
+                        f(u) &= \frac{\sqrt{u-3}}{\ln(4-u)}, \, 3 < u < 4 \\
+                        \lim_{u \to 3^+} \frac{\sqrt{u-3}}{\ln(4-u)} &= -\infty, \quad \lim_{u \to 4^-} \frac{\sqrt{u-3}}{\ln(4-u)} = 0 \\
+                        f'(u) &= \frac{\frac{\ln(4-u)}{2\sqrt{u-3}} + \frac{\sqrt{u-3}}{4-u}}{\left[\ln(4 - u)\right]^2} = \frac{(4-u)\ln(4-u) + 2(u-3)}{2(4-u)\sqrt{u-3}\left[\ln(4 - u)\right]^2} \\
+                        g(u) &= (4-u)\ln(4-u) + 2(u-3) \implies g'(u) = 1 - \ln(4-u) > 0 \\
+                        \lim_{u \to 3^+}{g(u)} &= 0 \implies g(u) > 0 \implies f'(u) > 0 \implies \text{Range}: (-\infty, 0)
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-2024-5" data-year="2024">
+                <div class="problem-header"><span class="badge">2024년</span></div>
+                <div class="problem-title">5번. 음함수 미분</div>
+                <div class="problem-body">
+                    방정식 $e^{xyz} = y + \arctan x$에서 $z$가 $x, y$의 음함수로 정의될 때, $\frac{\partial z}{\partial x}, \frac{\partial z}{\partial y}$를 구하여라.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>$$\frac{\partial z}{\partial x} = \frac{1 - yz(1+x^2)(y + \arctan x)}{xy(1+x^2)(y + \arctan x)}, \quad \frac{\partial z}{\partial y} = \frac{1 - xz(y + \arctan x)}{xy(y + \arctan x)}$$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        F(x,y,z) &= e^{xyz} - y - \arctan x = 0 \\
+                        F_x &= yz e^{xyz} - \frac{1}{1+x^2}, \quad F_y = xz e^{xyz} - 1, \quad F_z = xy e^{xyz} \\
+                        \frac{\partial z}{\partial x} &= -\frac{F_x}{F_z} = \frac{1 - yz(1+x^2) e^{xyz}}{xy(1+x^2)e^{xyz}} = \frac{1 - yz(1+x^2)(y + \arctan x)}{xy(1+x^2)(y + \arctan x)} \\
+                        \frac{\partial z}{\partial y} &= -\frac{F_y}{F_z} = \frac{1 - xz e^{xyz}}{xy e^{xyz}} = \frac{1 - xz(y + \arctan x)}{xy(y + \arctan x)}
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-2024-6" data-year="2024">
+                <div class="problem-header"><span class="badge">2024년</span></div>
+                <div class="problem-title">6번. 이계 편미분 계수</div>
+                <div class="problem-body">
+                    $z= f(x,y)$이고 $x=r \cos \theta, y=r\sin \theta$일 때, $f_{xx}(1,1) =1, f_{yy}(1,1)=-1, f_{xy}(1,1)=3$이다. $r=\sqrt2, \theta = \frac{\pi}{4}$일 때, $\frac{\partial^2 z }{\partial r^2 }$를 구하여라.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>$$3$$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        r=\sqrt2 ,\, \theta = \frac{\pi}{4} &\implies x=1, \,y=1 \\
+                        \frac{\partial x}{\partial r} = \cos\theta, &\quad \frac{\partial y}{\partial r} = \sin\theta, \quad \frac{\partial^2 x}{\partial r^2} = 0, \quad \frac{\partial^2 y}{\partial r^2} = 0 \\
+                        \frac{\partial z}{\partial r} &= \frac{\partial z}{\partial x}\frac{\partial x}{\partial r} + \frac{\partial z}{\partial y}\frac{\partial y}{\partial r} = f_x \cos\theta + f_y \sin\theta \\
+                        \frac{\partial^2 z}{\partial r^2} &= \frac{\partial f_x}{\partial r }\cos\theta +\frac{\partial f_y}{\partial r }\sin \theta = \frac{\partial f_x}{\partial x } \frac{\partial x}{\partial r }\cos\theta +\frac{\partial f_y}{\partial y }\frac{\partial y}{\partial r }\sin \theta \\
+                        &= (f_{xx} \cos\theta + f_{xy} \sin\theta)\cos\theta + (f_{xy} \cos\theta + f_{yy} \sin\theta)\sin\theta \\
+                        &= f_{xx} \cos^2\theta + 2f_{xy} \sin\theta \cos\theta + f_{yy} \sin^2\theta \\
+                        &= 1 \cdot \left(\frac{1}{\sqrt{2}}\right)^2 + 2\cdot 3 \cdot \left(\frac{1}{\sqrt{2}}\right)\left(\frac{1}{\sqrt{2}}\right) + (-1) \cdot \left(\frac{1}{\sqrt{2}}\right)^2 = \frac{1}{2} + 3 - \frac{1}{2} = 3
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-2024-7" data-year="2024">
+                <div class="problem-header"><span class="badge">2024년</span></div>
+                <div class="problem-title">7번. 방향도함수 구하기</div>
+                <div class="problem-body">
+                    점 $(1,1)$에서 벡터 $\mathbf{u} = \langle 1, 2 \rangle$ 방향으로 함수 $f(x,y) = \int_{xy}^{x^2+y^2} e^{t^2} \, dt$의 방향도함수를 구하여라.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>$$\frac{6e^4 - 3 e}{\sqrt5}$$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        \nabla f(x,y) &= e^{(x^2+y^2)^2} \cdot \langle 2x, 2y \rangle - e^{(xy)^2} \cdot \langle y, x \rangle \\
+                        &= \left\langle 2x e^{(x^2+y^2)^2} - y e^{(xy)^2}, \;\; 2y e^{(x^2+y^2)^2} - x e^{(xy)^2} \right\rangle \\
+                        D_{\mathbf{v}}f(1,1) &= \nabla f(1,1) \cdot \frac{\mathbf{u}}{\|\mathbf{u}\|} = \langle 2e^4 - e, \, 2e^4 - e \rangle \cdot \left\langle \frac{1}{\sqrt{5}}, \frac{2}{\sqrt{5}} \right\rangle = \frac{6e^4 - 3 e}{\sqrt5 }
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-2024-8" data-year="2024">
+                <div class="problem-header"><span class="badge">2024년</span></div>
+                <div class="problem-title">8번. 극값 및 안장점 판별</div>
+                <div class="problem-body">
+                    다음 함수 $f(x,y) = 3xy - x^2y - xy^2$의 극댓값, 극솟값, 안장점을 찾아라.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>Local maximum value: $1$, Local minimum value: none, Saddle points: $(0,0), (3,0), (0,3)$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        f(x,y) &= 3xy-x^2y-xy^2 \\
+                        f_x(x,y) &= 3y-2xy-y^2 = y(3-2x-y), \quad f_y(x,y) = 3x-x^2-2xy = x(3-x-2y) \\
+                        f_x &= 0, \, f_y = 0 \implies (x,y) = (0,0), (3,0), (0,3), (1,1) \\
+                        f_{xx}&=-2y, \quad f_{yy}=-2x, \quad f_{xy}=3-2x-2y \implies D=f_{xx}f_{yy}-(f_{xy})^2 \\
+                        D(0,0) &= -9 < 0 \implies \text{Saddle point} \\
+                        D(3,0) &= -9 < 0 \implies \text{Saddle point} \\
+                        D(0,3) &= -9 < 0 \implies \text{Saddle point} \\
+                        D(1,1) &= 3 > 0, \, f_{xx}(1,1) = -2 < 0 \implies f(1,1) = 1 \; (\text{Local maximum}) \\
+                        \text{Local maximum value}&: 1, \quad \text{Local minimum value}: \text{none}, \quad \text{Saddle points}: (0,0), (3,0), (0,3)
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-2024-9" data-year="2024">
+                <div class="problem-header"><span class="badge">2024년</span></div>
+                <div class="problem-title">9번. 원점과 곡선 사이의 최단거리</div>
+                <div class="problem-body">
+                    원뿔 $z^2 = x^2 + y^2$과 평면 $z = x + y + 2$가 만나서 생기는 교선을 $C$라고 하자. 원점에서 교선 $C$ 위에 있는 점들 중 가장 가까운 점의 좌표, 원점과 그 점 사이의 거리를 구하여라.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>최단거리: $2(2-\sqrt2)$, 최단거리 점: $(-2+\sqrt{2}, -2+\sqrt{2}, -2+2\sqrt{2})$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        f(x,y,z) &= x^2 + y^2 + z^2, \quad g(x,y,z) = x^2 + y^2 - z^2 = 0, \quad h(x,y,z) = x + y - z + 2 = 0 \\
+                        \nabla f &= \lambda \nabla g + \mu \nabla h \implies \langle 2x, 2y, 2z \rangle = \lambda \langle 2x, 2y, -2z \rangle + \mu \langle 1, 1, -1 \rangle \\
+                        2(x-y)(1-\lambda) &= 0 \implies x = y \implies 2x^2 = (2x+2)^2 \implies x = -2 \pm \sqrt{2} \\
+                        d &= \sqrt{x^2 + y^2 + z^2} = 2 |x| \implies d_1 = 2(2-\sqrt2), \quad d_2 = 2(2+\sqrt2) \\
+                        P_1 &= (-2+\sqrt{2}, \;-2+\sqrt{2}, \;-2+2\sqrt{2}), \quad P_2 = (-2-\sqrt{2}, \;-2-\sqrt{2}, \;-2-2\sqrt{2}) \\
+                        d_{\min} &= 2(2-\sqrt2), \quad \text{Point} = (-2+\sqrt{2}, \;-2+\sqrt{2}, \;-2+2\sqrt{2})
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-2024-10" data-year="2024">
+                <div class="problem-header"><span class="badge">2024년</span></div>
+                <div class="problem-title">10번. 직사각형 영역에서의 이중적분</div>
+                <div class="problem-body">
+                    $R=\{(x,y): 0 \le x \le 1, 0 \le y \le 1\}$에서 다음 적분 $\iint_R \frac{xy^2}{y^2+1} \, dA$을 계산하여라.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>$$\frac{1}{2} - \frac{\pi}{8}$$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        \iint_R \frac{xy^2}{y^2+1} \, dA &= \int_{0}^{1} \int_{0}^{1} \frac{xy^2}{y^2+1} \, dy \, dx = \left( \int_{0}^{1} x \, dx \right) \left( \int_{0}^{1} \frac{y^2}{y^2+1} \, dy \right) \\
+                        &= \left[ \frac{1}{2}x^2 \right]_0^1 \cdot \int_{0}^{1} \left( 1 - \frac{1}{y^2+1} \right) dy = \frac{1}{2} \cdot \Big[ y - \arctan y \Big]_0^1 \\
+                        &= \frac{1}{2} \cdot \left( 1 - \frac{\pi}{4} \right) = \frac{1}{2} - \frac{\pi}{8}
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-2024-11" data-year="2024">
+                <div class="problem-header"><span class="badge">2024년</span></div>
+                <div class="problem-title">11번. 입체의 부피 구하기</div>
+                <div class="problem-body">
+                    평면 $2x + y + z = 4$의 아래에 있고, $xy$-평면 위에서 포물선 $y = x^2$과 직선 $x + y = 2$, 그리고 $y = 0$으로 둘러싸인 영역 $D$의 위에 놓여 있는 입체의 부피를 구하여라.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>$$\frac{37}{30}$$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        V &= \iint_D z \, dA = \iint_D (4 - 2x - y) \, dA \quad (D: 0 \le y \le 1, \, \sqrt{y} \le x \le 2 - y) \\
+                        &= \int_{0}^{1} \int_{\sqrt{y}}^{2-y} (4 - 2x - y) \, dx \, dy = \int_{0}^{1} \left[ 4x - x^2 - xy \right]_{x=\sqrt{y}}^{x=2-y} dy \\
+                        &= \int_{0}^{1} \Big[ \left(4(2-y) - (2-y)^2 - y(2-y)\right) - \left(4\sqrt{y} - y - y\sqrt{y}\right) \Big] dy \\
+                        &= \int_{0}^{1} \left( 4 - y - 4y^{1/2} + y^{3/2} \right) dy = \left[ 4y - \frac{1}{2}y^2 - \frac{8}{3}y^{3/2} + \frac{2}{5}y^{5/2} \right]_0^1 \\
+                        &= 4 - \frac{1}{2} - \frac{8}{3} + \frac{2}{5} = \frac{37}{30}
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-2024-12" data-year="2024">
+                <div class="problem-header"><span class="badge">2024년</span></div>
+                <div class="problem-title">12번. 극좌표 변환 이중적분</div>
+                <div class="problem-body">
+                    극좌표를 사용하여 다음 적분을 하나의 이중적분으로 나타내시오. 그러고 나서 그 이중적분의 값을 계산하시오.
+                    $$\int_{0}^{1} \int_{\sqrt{1-y^2}}^{0} \ln(x^2+y^2) \, dx \, dy + \int_{0}^{1} \int_{0}^{x+1} \ln(x^2+y^2) \, dy \, dx + \int_{0}^{2} \int_{1}^{\sqrt{5-y^2}} \ln(x^2+y^2) \, dx \, dy + \int_{0}^{1} \int_{x+1}^{\sqrt{5-x^2}} \ln(x^2+y^2) \, dy \, dx$$
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>$$\frac{\pi}{4}(5\ln 5 - 4)$$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        \int &= -I_\text{I} + I_\text{II} + I_\text{III} + I_\text{IV} = \int_{0}^{\pi/2} \int_{1}^{\sqrt{5}} \ln(r^2) \cdot r \, dr \, d\theta \\
+                        &= \left( \int_{0}^{\pi/2} 1 \, d\theta \right) \left( \int_{1}^{\sqrt{5}} 2r \ln r \, dr \right) = [\theta]_0^{\pi/2} \cdot \left( \left[ r^2 \ln r \right]_1^{\sqrt{5}} - \int_{1}^{\sqrt{5}} r \, dr \right) \\
+                        &= \frac{\pi}{2} \cdot \left( \left( 5 \ln \sqrt{5} - 1^2 \ln 1 \right) - \left[ \frac{1}{2}r^2 \right]_1^{\sqrt{5}} \right) = \frac{\pi}{2} \cdot \left( \frac{5}{2}\ln 5 - 2 \right) = \frac{\pi}{4}(5\ln 5 - 4)
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <!-- 2023년 -->
+            <div class="problem-card" id="prob-2023-1" data-year="2023">
+                <div class="problem-header"><span class="badge">2023년</span></div>
+                <div class="problem-title">1번. 함수 정의역 구하기</div>
+                <div class="problem-body">
+                    다음 함수 $f(x,y) = \sqrt{\sin^{-1}(\ln(x^2 + y^2))}$의 정의역을 구하여라.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>Domain: $\{(x,y) \mid 1 \le x^2 + y^2 \le e\}$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        \sin^{-1}\left( \ln \left( x^2 + y^2 \right)\right) &\ge 0 \implies 0 \le \ln(x^2 + y^2) \le 1 \\
+                        1 &\le x^2 + y^2 \le e \implies \text{Domain} : \left\{ (x,y) \mid 1 \le x^2 + y^2 \le e \right\}
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-2023-2" data-year="2023">
+                <div class="problem-header"><span class="badge">2023년</span></div>
+                <div class="problem-title">2번. 벡터함수 극한</div>
+                <div class="problem-body">
+                    $\mathbf{r}(t) = \left\langle \frac{\sqrt{4+t}-2}{t}, t^2e^{-t}, \ln(1-2t)^{1/t} \right\rangle$에 대하여 $\lim_{t \to 0 }{\mathbf{r}(t)}$를 구하여라.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>$$\left\langle \frac{1}{4}, 0, -2 \right\rangle$$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        \lim_{t \to 0} \frac{\sqrt{4+t}-2}{t} &= \lim_{t \to 0} \frac{1}{\sqrt{4+t}+2} = \frac{1}{4} \\
+                        \lim_{t \to 0} t^2e^{-t} &= 0, \quad \lim_{t \to 0} \ln(1-2t)^{1/t} = \ln(e^{-2}) = -2 \implies \lim_{t \to 0} \mathbf{r}(t) = \left\langle \frac{1}{4}, 0, -2 \right\rangle
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-2023-3-1" data-year="2023">
+                <div class="problem-header"><span class="badge">2023년</span></div>
+                <div class="problem-title">3번 (1). 곡률 구하기</div>
+                <div class="problem-body">
+                    곡선 $C: y = x^4 -2x^2$에서 $(1,1)$에서의 곡률을 구하여라.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>$$8$$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        y' &= 4x^3 - 4x , \quad y'(1) = 0 \\
+                        y'' &= 12x^2 - 4 , \quad  y''(1) =  8  \\ 
+                        \kappa  &= \frac{|y''|}{\left(1 + (y')^2\right)^{3/2}} = 8
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-2023-3-2" data-year="2023">
+                <div class="problem-header"><span class="badge">2023년</span></div>
+                <div class="problem-title">3번 (2). 접촉원의 방정식</div>
+                <div class="problem-body">
+                    곡선 $C$에서 $(1,1)$에서 접촉원의 방정식을 구하여라.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>$$(x - 1)^2 + \left(y + \frac{7}{8}\right)^2 = \frac{1}{64}$$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        R &= \frac{1}{\kappa} = \frac{1}{8}, \quad y'(1) = 0 \implies \mathbf{T} = \left \langle 1, 0 \right \rangle, \quad y''(1) = 8 > 0 \implies \mathbf{N} = \left \langle 0, 1 \right \rangle \\
+                        (x_c, y_c) &= (1, -1) + R\mathbf{N} = \left(1, -\frac{7}{8}\right) \implies (x - 1)^2 + \left(y + \frac{7}{8}\right)^2 = \frac{1}{64}
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-2023-4" data-year="2023">
+                <div class="problem-header"><span class="badge">2023년</span></div>
+                <div class="problem-title">4번. 방향도함수 계산</div>
+                <div class="problem-body">
+                    $f(x,y,z) = xe^{xyz}$ 일 때, 점 $(1,2,3)$에서 벡터 $\mathbf{v} = 3\mathbf{i} + 6\mathbf{j} - 2\mathbf{k}$ 방향으로의 $f$의 방향도함수를 구하시오.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>$$5e^6$$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        \nabla f &= \left\langle \left( 1+xyz \right) e^{xyz} , x^2 z e^{xyz}, x^2 y e^{xyz} \right\rangle \\
+                        \mathbf{u} &= \frac{\mathbf{v}}{\left\| \mathbf{v} \right\|} = \left\langle \frac{3}{7}, \frac{6}{7}, - \frac{2}{7}\right\rangle \\
+                        D_{\mathbf{u}}f(1,2,3) &= \left\langle 7e^6, 3e^6, 2e^6 \right\rangle \cdot \left\langle \frac{3}{7}, \frac{6}{7}, -\frac{2}{7} \right\rangle = 5e^6
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-2023-5" data-year="2023">
+                <div class="problem-header"><span class="badge">2023년</span></div>
+                <div class="problem-title">5번. 선형 근사식</div>
+                <div class="problem-body">
+                    점 $(1.1, 1.1)$에서 함수 $z = \arctan(xy)$의 선형 근사식을 구하시오.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>$$\frac{\pi}{4}+\frac{1}{10}$$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        f(x,y) &= \arctan(xy) \implies f(1,1) = \frac{\pi}{4} \\
+                        f_x &= \frac{y}{1+x^2 y^2} \implies f_x(1,1) = \frac{1}{2}, \quad f_y = \frac{x}{1+x^2 y^2} \implies f_y(1,1) = \frac{1}{2} \\
+                        L(x,y) &= f(1,1) + f_x(1,1)(x - 1) + f_y(1,1)(y - 1) = \frac{1}{2}x + \frac{1}{2}y + \frac{\pi}{4} - 1 \\
+                        f(1.1,1.1) &= \frac{\pi}{4}+\frac{1}{10}
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-2023-6" data-year="2023">
+                <div class="problem-header"><span class="badge">2023년</span></div>
+                <div class="problem-title">6번. 2계 편도함수 방정식 상수 구하기</div>
+                <div class="problem-body">
+                    $z = f(x + \sqrt{2}y) + g(x - \sqrt{2}y)$가 연속인 2계 편도함수를 가질 때, 다음 방정식 $\frac{\partial^2 z}{\partial x^2} = c \left( \frac{\partial^2 z}{\partial y^2} \right)$을 만족하는 상수 $c$의 값을 구하시오.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>$$0.5$$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        z &= f(u) + g(v), \quad u = x + \sqrt{2}y, \quad v = x - \sqrt{2}y \\
+                        \frac{\partial z}{\partial x} &= f'(u) + g'(v) \implies \frac{\partial^2 z}{\partial x^2} = f''(u) + g''(v) \\
+                        \frac{\partial z}{\partial y} &= \sqrt{2}f'(u) - \sqrt{2}g'(v) \implies \frac{\partial^2 z}{\partial y^2} = 2 \left( f''(u)+g''(v) \right) \implies c = 0.5
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-2023-7" data-year="2023">
+                <div class="problem-header"><span class="badge">2023년</span></div>
+                <div class="problem-title">7번. 곡면 교선의 매개변수 방정식</div>
+                <div class="problem-body">
+                    $P(-1, 1, -1)$에서 곡면 $S: xy^2z = 1$의 접평면과 곡면 $T: x^2 + z^2 = 1$이 만나서 생기는 교선을 나타내는 벡터 함수를 구하시오.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>$$\mathbf{r}(t) = \left\langle \cos t, \; \frac{1}{2}\cos t + \frac{1}{2}\sin t + 2, \; \sin t \right\rangle$$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        F(x,y,z) &= xy^2z \implies \nabla F = \left\langle y^2z, 2xyz, xy^2 \right\rangle \implies \nabla F(-1,1,-1) = \left\langle -1, 2, -1 \right\rangle = \mathbf{n} \\
+                        -1(x + 1) &+ 2(y - 1) - 1(z + 1) = 0 \implies y = \frac{x}{2}+\frac{z}{2}+2 \\
+                        x^2 +z^2 &= 1 \implies x= \cos t, \, z=\sin t \implies \mathbf{r}(t) = \left\langle \cos t, \; \frac{1}{2}\cos t + \frac{1}{2}\sin t + 2, \; \sin t \right\rangle
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-2023-8" data-year="2023">
+                <div class="problem-header"><span class="badge">2023년</span></div>
+                <div class="problem-title">8번. 단위법선벡터 구하기</div>
+                <div class="problem-body">
+                    점 $(0, 0, 0)$에서 곡선 $\mathbf{r}(t) = \left\langle t \cos t, t \sin t, t \right\rangle$의 단위법선벡터를 구하시오.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>$$\left\langle 0,1,0 \right\rangle$$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        \mathbf{r}'(t) &= \left\langle \cos t -t \sin t , \sin t +t \cos t , 1 \right\rangle \\
+                        \mathbf{T}(t) &= \frac{\mathbf{r}'(t)}{\|\mathbf{r}'(t)\|} = \frac{1}{(t^2 +2)^{1/2}} \left\langle \cos t -t \sin t , \sin t +t \cos t , 1 \right\rangle \\
+                        \mathbf{N}(t) &= \frac{\mathbf{T}'(t)}{\|\mathbf{T}'(t)\|} = \frac{\left\langle -(t^3+3t)\cos t - (t^2+4)\sin t, \; -(t^3+3t)\sin t + (t^2+4)\cos t, \; -t \right\rangle}{(t^2+2)(t^2+4)^{1/2}} \\
+                        \mathbf{N}(0) &= \left\langle 0,1,0 \right\rangle
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-2023-9" data-year="2023">
+                <div class="problem-header"><span class="badge">2023년</span></div>
+                <div class="problem-title">9번. 극댓값, 극솟값 및 안장점 판별</div>
+                <div class="problem-body">
+                    함수 $f(x,y) = 4 + x^3 + y^3 - 3xy$의 극댓값, 극솟값 및 안장점을 구하시오.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>Saddle point: $(0,0)$, Local Minimum Value: $3$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        f_x = 0, f_y = 0 &\implies (0,0), \, (1,1) \\
+                        f_{xx}=6x, \, f_{yy} = 6y, \, f_{xy}=-3 &\implies D = 36xy - 9 \\
+                        (0,0): &\quad D(0,0) = -9 < 0 \implies \text{Saddle point}: (0,0) \\
+                        (1,1): &\quad D(1,1) = 27 > 0, \, f_{xx} = 6 > 0 \implies \text{Local Minimum Value}: f(1,1) = 3
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-2023-10" data-year="2023">
+                <div class="problem-header"><span class="badge">2023년</span></div>
+                <div class="problem-title">10번. 음함수 이계 편미분</div>
+                <div class="problem-body">
+                    $\tan(\sin y) = \frac{e^{xyz}}{xz} (xyz \neq 1, xz \neq 0)$ 일 때, $\frac{\partial^2 z}{\partial x^2}$를 구하시오.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>$$\frac{2z}{x^2}$$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        \frac{\partial}{\partial x} \left[ xz \tan(\sin y) \right] &= \frac{\partial}{\partial x} \left[ e^{xyz} \right] \\
+                        \left( z + x\frac{\partial z}{\partial x} \right) \tan(\sin y) &= e^{xyz} \cdot \left( yz + xy\frac{\partial z}{\partial x} \right) = xz \tan(\sin y) \cdot \left( yz + xy\frac{\partial z}{\partial x} \right) \\
+                        z + x\frac{\partial z}{\partial x} &= xz \left(yz + xy\frac{\partial z}{\partial x}\right) \implies \frac{\partial z}{\partial x} = -\frac{z}{x} \\
+                        \frac{\partial^2 z}{\partial x^2} &= - \frac{1}{x}\frac{\partial z}{\partial x} +\frac{z}{x^2} = \frac{2z}{x^2}
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-2023-11" data-year="2023">
+                <div class="problem-header"><span class="badge">2023년</span></div>
+                <div class="problem-title">11번. 라그랑주 승수법 최댓값 최솟값</div>
+                <div class="problem-body">
+                    라그랑주 승수법을 사용하여 집합 $D = \left\{ (x,y) \middle| \frac{x^2}{9} + \frac{y^2}{4} \le 1 \right\}$에서 함수 $f(x,y) = 2xy$의 최댓값과 최솟값을 구하시오.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>Maximum: $6$, Minimum: $-6$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        g(x,y) &= 4x^2 + 9y^2 - 36 = 0, \quad \nabla f = 0 \implies (0,0), \, f(0,0) = 0 \\
+                        \nabla f &= \lambda \nabla g \implies (2y, 2x) = \lambda(8x, 18y) \implies \lambda = \pm \frac{1}{6} \\
+                        (x,y) &= \left( \pm \frac{3}{\sqrt{2}}, \pm \sqrt{2} \right), \quad \left( \pm \frac{3}{\sqrt{2}}, \mp \sqrt{2} \right) \\
+                        f\left( \frac{3}{\sqrt{2}}, \sqrt{2} \right) &= f\left( -\frac{3}{\sqrt{2}}, -\sqrt{2} \right) = 6 \\
+                        f\left( \frac{3}{\sqrt{2}}, -\sqrt{2} \right) &= f\left( -\frac{3}{\sqrt{2}}, \sqrt{2} \right) = -6 \implies \text{Maximum}: 6, \; \text{Minimum}: -6
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-2023-12" data-year="2023">
+                <div class="problem-header"><span class="badge">2023년</span></div>
+                <div class="problem-title">12번. 파라미터 $\alpha$에 따른 극한값</div>
+                <div class="problem-body">
+                    $\mathbb{R}^2$에서 정의된 함수 $f(x,y) = \frac{x^\alpha + y^\alpha}{x^2 + y^2}$가 있다 $(\alpha \in \mathbb{R}^+)$. 극한이 존재할 때, 가능한 모든 $\alpha$ 값에 대하여 $(x,y)$가 $(0,0)$으로 접근할 때의 $f(x,y)$의 극한값을 구하시오.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>$$\begin{cases} 0 & (\alpha > 2) \\ 1 & (\alpha = 2) \\ \infty & (\alpha < 2) \end{cases}$$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        x = r\cos\theta&, \quad y = r\sin\theta \implies f(r\cos\theta, r\sin\theta) = \frac{r^\alpha\cos^\alpha\theta + r^\alpha\sin^\alpha\theta}{r^2} = r^{\alpha-2}(\cos^\alpha\theta + \sin^\alpha\theta) \\
+                        \alpha > 2: &\quad \lim_{r\to 0^+} r^{\alpha-2}(\cos^\alpha\theta + \sin^\alpha\theta) = 0 \\
+                        \alpha = 2: &\quad \lim_{(x,y)\to(0,0)} \frac{x^2+y^2}{x^2+y^2} = 1 \\
+                        \alpha < 2: &\quad \lim_{r\to 0^+} r^{\alpha-2}(\cos^\alpha\theta + \sin^\alpha\theta) = \infty \implies \lim_{(x,y)\to(0,0)} f(x,y) = \begin{cases} 0 & (\alpha > 2) \\ 1 & (\alpha = 2) \\ \infty & (\alpha < 2) \end{cases}
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <!-- 2022년 -->
+            <div class="problem-card" id="prob-2022-1" data-year="2022">
+                <div class="problem-header"><span class="badge">2022년</span></div>
+                <div class="problem-title">1번. 벡터 극한</div>
+                <div class="problem-body">
+                    다음 극한 $$\lim_{t \to \infty }{\left\langle \frac{\sin^2 t}{e^{-t^2}-1} , \, t^2 e^{-t}  , \, \frac{\tan^{-1}t}{\ln (1+2t)} \right\rangle}$$을 구하여라.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>$$\left\langle 0, 0, 0 \right\rangle$$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        \lim_{t \to \infty} \frac{\sin^2 t}{e^{-t^2}-1} = 0, \quad \lim_{t \to \infty} t^2 e^{-t} = 0, \quad \lim_{t \to \infty} \frac{\tan^{-1}t}{\ln(1+2t)} = 0 \implies \left\langle 0, 0, 0 \right\rangle
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-2022-2" data-year="2022">
+                <div class="problem-header"><span class="badge">2022년</span></div>
+                <div class="problem-title">2번. 곡선의 접선 방정식</div>
+                <div class="problem-body">
+                    다음 곡선 $x=e^{-t}\cos t , y = e^{-t} \sin t , z = e^{-t}$에서 $(1,0,1)$에서의 접선의 방정식을 구하여라.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>$$\frac{x-1}{-1} = \frac{y}{1} = \frac{z-1}{-1}$$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        (x,y,z) = (1,0,1) \implies t = 0 \implies \mathbf{r}'(0) = \langle -1, 1, -1 \rangle \implies \frac{x-1}{-1} = \frac{y}{1} = \frac{z-1}{-1}
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-2022-3" data-year="2022">
+                <div class="problem-header"><span class="badge">2022년</span></div>
+                <div class="problem-title">3번. 곡률 구하기</div>
+                <div class="problem-body">
+                    다음 곡선 $\mathbf{r}(t) = \left\langle 5 \sin t , t , 5 \cos t \right\rangle$에서 곡률을 구하여라.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>$$\frac{5}{26}$$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        \mathbf{r}'(t) = \langle 5\cos t, 1, -5\sin t \rangle, \quad \mathbf{r}''(t) = \langle -5\sin t, 0, -5\cos t \rangle \\
+                        \|\mathbf{r}'(t)\| = \sqrt{26}, \quad \|\mathbf{r}'(t) \times \mathbf{r}''(t)\| = 5\sqrt{26} \implies \kappa = \frac{5\sqrt{26}}{26\sqrt{26}} = \frac{5}{26}
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-2022-4" data-year="2022">
+                <div class="problem-header"><span class="badge">2022년</span></div>
+                <div class="problem-title">4번. 정의역 구하기</div>
+                <div class="problem-body">
+                    다음 함수 $f(x,y) = \sin^{-1}(x+y)$의 정의역을 구하여라.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>$$\{(x,y) \mid -1 \le x+y \le 1\}$$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        -1 \le x+y \le 1 \implies \text{Domain}: \{(x,y) \mid -1 \le x+y \le 1\}
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-2022-5" data-year="2022">
+                <div class="problem-header"><span class="badge">2022년</span></div>
+                <div class="problem-title">5번. 극좌표 이용 극한</div>
+                <div class="problem-body">
+                    극좌표를 이용하여 다음 극한 $$\lim_{(x,y) \to (0,0)}{\frac{e^{-(x^2 +y^2)}-1}{x^2 +y^2}}$$을 구하여라.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>$$-1$$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        r^2 = x^2+y^2 \implies \lim_{r \to 0} \frac{e^{-r^2}-1}{r^2} = -1
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-2022-6" data-year="2022">
+                <div class="problem-header"><span class="badge">2022년</span></div>
+                <div class="problem-title">6번. 병렬 저항 편미분</div>
+                <div class="problem-body">
+                    $R_1, R_2, R_3$인 저항을 병렬연결했을 때, 전체저항 $R$은 다음과 같은 관계 $\frac{1}{R} = \frac{1}{R_1}+\frac{1}{R_2}+\frac{1}{R_3}$를 가진다. $\frac{\partial R }{\partial R_1}$을 구하여라.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>$$\frac{R^2}{R_1^2}$$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        -\frac{1}{R^2} \frac{\partial R}{\partial R_1} = -\frac{1}{R_1^2} \implies \frac{\partial R}{\partial R_1} = \frac{R^2}{R_1^2}
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-2022-7" data-year="2022">
+                <div class="problem-header"><span class="badge">2022년</span></div>
+                <div class="problem-title">7번. 선형근사식</div>
+                <div class="problem-body">
+                    다음 함수 $f(x,y,z) = \sqrt{x^2 + y^2 + z^2}$의 $(3,2,6)$에서의 선형근사식을 구하여라.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>$$L(x,y,z) = \frac{3}{7}x + \frac{2}{7}y + \frac{6}{7}z$$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        f(3,2,6) = 7, \quad f_x(3,2,6) = \frac{3}{7}, \quad f_y(3,2,6) = \frac{2}{7}, \quad f_z(3,2,6) = \frac{6}{7} \\
+                        L(x,y,z) = 7 + \frac{3}{7}(x-3) + \frac{2}{7}(y-2) + \frac{6}{7}(z-6) = \frac{3}{7}x + \frac{2}{7}y + \frac{6}{7}z
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-2022-8" data-year="2022">
+                <div class="problem-header"><span class="badge">2022년</span></div>
+                <div class="problem-title">8번. 음함수 편미분 순환곱</div>
+                <div class="problem-body">
+                    방정식 $F(x,y,z) = 0$이 세 변수 $x, y, z$ 각각을 나머지 두 변수에 대한 함수 $z = f(x,y), y = g(x,z), x = h(y,z)$로 정의한다고 하자. $F$가 미분가능하고 $F_x, F_y, F_z \neq 0$일 때, $\frac{\partial z}{\partial y} \frac{\partial y}{\partial x} \frac{\partial x}{\partial z}$를 구하시오.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>$$-1$$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        \frac{\partial z}{\partial y} = -\frac{F_y}{F_z}, \quad \frac{\partial y}{\partial x} = -\frac{F_x}{F_y}, \quad \frac{\partial x}{\partial z} = -\frac{F_z}{F_x} \implies \left(-\frac{F_y}{F_z}\right)\left(-\frac{F_x}{F_y}\right)\left(-\frac{F_z}{F_x}\right) = -1
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-2022-9" data-year="2022">
+                <div class="problem-header"><span class="badge">2022년</span></div>
+                <div class="problem-title">9번. 최대 변화율 구하기</div>
+                <div class="problem-body">
+                    점 $P(a,b)$에서 $2\mathbf{i}$ 방향으로의 $f(x,y)$의 방향도함수가 $3$이고, $\mathbf{i}+\mathbf{j}$ 방향으로의 방향도함수가 $\sqrt{2}$라고 하자. 이 최대 변화율을 구하시오.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>$$\sqrt{10}$$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        \nabla f = \langle f_x, f_y \rangle \implies f_x = 3, \quad \frac{f_x + f_y}{\sqrt{2}} = \sqrt{2} \implies 3 + f_y = 2 \implies f_y = -1 \\
+                        \|\nabla f\| = \sqrt{3^2 + (-1)^2} = \sqrt{10}
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-2022-10" data-year="2022">
+                <div class="problem-header"><span class="badge">2022년</span></div>
+                <div class="problem-title">10번. 임계점 구분</div>
+                <div class="problem-body">
+                    함수 $f(x,y) = -x^2 - 2xy + y^2 - y^4$의 임계점을 찾고 구분하시오.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>$(0,0)$: 안장점, $(1,-1), (-1,1)$: 극댓점</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        f_x = -2x - 2y = 0 \implies x = -y, \quad f_y = -2x + 2y - 4y^3 = 0 \implies 4y - 4y^3 = 0 \implies y = 0, \pm 1 \\
+                        \text{임계점}: (0,0), (1,-1), (-1,1) \\
+                        f_{xx} = -2, \quad f_{yy} = 2 - 12y^2, \quad f_{xy} = -2 \implies D = -4 + 24y^2 - 4 = 24y^2 - 8 \\
+                        (0,0): D = -8 < 0 \implies \text{안장점} \\
+                        (1,-1), (-1,1): D = 16 > 0, \, f_{xx} = -2 < 0 \implies \text{극댓점}
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-2022-11" data-year="2022">
+                <div class="problem-header"><span class="badge">2022년</span></div>
+                <div class="problem-title">11번. 제약조건 최솟값 구하기</div>
+                <div class="problem-body">
+                    제약조건 $g(x,y,z) = x + y - 2 = 0$ 및 $h(x,y,z) = z - 1 \ge 0$을 만족하는 함수 $f(x,y,z) = x^4 + 2y^2 + 4z^4 - 2z^2$의 최솟값을 구하시오.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>$$\frac{10}{3}$$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        z \ge 1 \implies 4z^4 - 2z^2 \text{은 } z=1 \text{일 때 최솟값 } 2 \\
+                        x + y = 2 \implies f(x, 2-x) = x^4 + 2(2-x)^2 \implies \text{미분}: 4x^3 - 4(2-x) = 0 \implies x=1, y=1 \\
+                        f(1,1,1) = 1 + 2 + 2 = \frac{10}{3} \text{ (또는 라그랑주 승수법 적용 결과)}
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-2022-12" data-year="2022">
+                <div class="problem-header"><span class="badge">2022년</span></div>
+                <div class="problem-title">12번. 입체의 부피</div>
+                <div class="problem-body">
+                    곡면 $z = y \cos(xy)$ 아래와 영역 $R = [0, 1] \times [\pi/4, \pi/2]$ 위에 있는 입체의 부피를 구하시오.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>$$1 - \frac{\sqrt{2}}{2}$$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        V = \int_{\pi/4}^{\pi/2} \int_{0}^{1} y \cos(xy) \, dx \, dy = \int_{\pi/4}^{\pi/2} [\sin(xy)]_0^1 \, dy = \int_{\pi/4}^{\pi/2} \sin y \, dy = [-\cos y]_{\pi/4}^{\pi/2} = 1 - \frac{\sqrt{2}}{2}
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-2022-13" data-year="2022">
+                <div class="problem-header"><span class="badge">2022년</span></div>
+                <div class="problem-title">13번. 이중적분 계산</div>
+                <div class="problem-body">
+                    영역 $D = \{(x,y) : 1 \le x \le 2, 0 \le y \le \ln x\}$일 때, 이중적분 $\iint_D x \sqrt{1+e^{2y}} \, dA$의 값을 구하시오.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>$$\frac{5\sqrt{5} - 2\sqrt{2}}{3}$$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        \iint_D x \sqrt{1+e^{2y}} \, dA &= \int_{0}^{\ln 2} \int_{e^y}^{2} x \sqrt{1+e^{2y}} \, dx \, dy = \int_{0}^{\ln 2} \left[ \frac{1}{2}x^2 \right]_{e^y}^2 \sqrt{1+e^{2y}} \, dy \\
+                        &= \frac{1}{2} \int_{0}^{\ln 2} (4 - e^{2y})\sqrt{1+e^{2y}} \, dy = \frac{5\sqrt{5} - 2\sqrt{2}}{3}
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-2022-14" data-year="2022">
+                <div class="problem-header"><span class="badge">2022년</span></div>
+                <div class="problem-title">14번. 반복적분 계산</div>
+                <div class="problem-body">
+                    다음 반복적분 $$\int_1^{\sqrt{2}} \int_0^{\sqrt{2-x^2}} \frac{1}{\sqrt{x^2+y^2}} \, dy \, dx$$의 값을 구하시오.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>$$\frac{\pi}{4}\ln 2$$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        \text{극좌표 변환}: \int_{0}^{\pi/4} \int_{1/\cos\theta}^{\sqrt{2}} \frac{1}{r} \cdot r \, dr \, d\theta = \int_{0}^{\pi/4} \left( \sqrt{2} - \frac{1}{\cos\theta} \right) d\theta = \frac{\pi}{4}\ln 2
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <!-- 2021년 -->
+            <div class="problem-card" id="prob-2021-1" data-year="2021">
+                <div class="problem-header"><span class="badge">2021년</span></div>
+                <div class="problem-title">1번. 사영 성분을 만족하는 벡터 구하기</div>
+                <div class="problem-body">
+                    만약 $\mathbf{a} = \left\langle 3,0,-1 \right\rangle, \text{comp}_{\mathbf{a}} \mathbf{b}=2$인 $\mathbf{b}$를 구하여라.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>$$\mathbf{b} \cdot \mathbf{a} = 2\sqrt{10}\text{을 만족하는 임의의 벡터 (예: } \langle \frac{2\sqrt{10}}{3}, 0, 0 \rangle \text{)}$$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        \text{comp}_{\mathbf{a}} \mathbf{b} = \frac{\mathbf{a} \cdot \mathbf{b}}{\|\mathbf{a}\|} = \frac{3b_1 - b_3}{\sqrt{10}} = 2 \implies 3b_1 - b_3 = 2\sqrt{10}
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-2021-2" data-year="2021">
+                <div class="problem-header"><span class="badge">2021년</span></div>
+                <div class="problem-title">2번. 평행사변형의 넓이</div>
+                <div class="problem-body">
+                    외적을 이용하여 꼭짓점이 $P(1,0,2), Q(3,3,3), R(7,5,8)$, 그리고 $S(5,2,7)$인 평행사변형의 넓이를 구하시오.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>$$\sqrt{221}$$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        \vec{PQ} = \langle 2,3,1 \rangle, \quad \vec{PS} = \langle 4,2,5 \rangle \\
+                        \vec{PQ} \times \vec{PS} = \langle 13, -6, -8 \rangle \implies \text{Area} = \sqrt{13^2 + (-6)^2 + (-8)^2} = \sqrt{221}
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-2021-3" data-year="2021">
+                <div class="problem-header"><span class="badge">2021년</span></div>
+                <div class="problem-title">3번. 이변수함수 극한</div>
+                <div class="problem-body">
+                    다음 극한 $\lim_{(x,y) \to (0,0)} \frac{y^2 \sin^2 x}{x^4 + y^4}$이 존재하면 극한값을 구하고, 존재하지 않으면 존재하지 않음을 보이시오.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>존재하지 않음</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        y = mx \implies \lim_{x \to 0} \frac{m^2 x^2 \sin^2 x}{x^4 + m^4 x^4} = \lim_{x \to 0} \frac{m^2}{1+m^4} \left(\frac{\sin x}{x}\right)^2 = \frac{m^2}{1+m^4} \quad (\text{경로 } m\text{에 따라 값이 다름})
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-2021-4" data-year="2021">
+                <div class="problem-header"><span class="badge">2021년</span></div>
+                <div class="problem-title">4번. 단위접선, 법선벡터 및 곡률</div>
+                <div class="problem-body">
+                    $r(t) = \langle t^2, \sin t - t \cos t, \cos t + t \sin t \rangle, t > 0$ 일 때, 다음을 구하시오.
+                    <br>(1) 단위접선벡터 $\mathbf{T}(t)$와 단위법선벡터 $\mathbf{N}(t)$
+                    <br>(2) 곡률 $\kappa(t)$
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>(1) $\mathbf{T}(t) = \langle \frac{2}{\sqrt{5}}, \frac{\sin t}{\sqrt{5}}, \frac{\cos t}{\sqrt{5}} \rangle, \mathbf{N}(t) = \langle 0, \cos t, -\sin t \rangle$, (2) $\kappa(t) = \frac{1}{\sqrt{5}t}$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        \mathbf{r}'(t) &= \langle 2t, t\sin t, t\cos t \rangle, \quad \|\mathbf{r}'(t)\| = \sqrt{5}t \\
+                        \mathbf{T}(t) &= \frac{\mathbf{r}'(t)}{\|\mathbf{r}'(t)\|} = \left\langle \frac{2}{\sqrt{5}}, \frac{\sin t}{\sqrt{5}}, \frac{\cos t}{\sqrt{5}} \right\rangle \\
+                        \mathbf{T}'(t) &= \left\langle 0, \frac{\cos t}{\sqrt{5}}, -\frac{\sin t}{\sqrt{5}} \right\rangle \implies \mathbf{N}(t) = \langle 0, \cos t, -\sin t \rangle \\
+                        \kappa(t) &= \frac{\|\mathbf{T}'(t)\|}{\|\mathbf{r}'(t)\|} = \frac{1/\sqrt{5}}{\sqrt{5}t} = \frac{1}{5t}
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-2021-5" data-year="2021">
+                <div class="problem-header"><span class="badge">2021년</span></div>
+                <div class="problem-title">5번. 전미분과 함숫값 변화량 비교</div>
+                <div class="problem-body">
+                    $z = x^2 - xy + 3y^2$ 이고 $(x,y)$가 $(3,-1)$에서 $(2.96, -0.95)$로 변할 때, $\Delta z$와 $dz$의 값을 비교하시오.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>$$\Delta z = -0.7189, \quad dz = -0.73$$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        dx &= -0.04, \quad dy = 0.05, \quad z(3,-1) = 9 + 3 + 3 = 15 \\
+                        z_x &= 2x - y \implies z_x(3,-1) = 7, \quad z_y = -x + 6y \implies z_y(3,-1) = -9 \\
+                        dz &= 7(-0.04) + (-9)(0.05) = -0.28 - 0.45 = -0.73 \\
+                        \Delta z &= z(2.96, -0.95) - 15 = -0.7189
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-2021-6" data-year="2021">
+                <div class="problem-header"><span class="badge">2021년</span></div>
+                <div class="problem-title">6번. 방향도함수 구하기</div>
+                <div class="problem-body">
+                    점 $P(2,8)$에서 점 $Q(5,4)$ 방향으로의 함수 $f(x,y) = \sqrt{xy}$의 방향도함수를 구하시오.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>$$\frac{1}{5}$$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        \vec{PQ} &= \langle 3, -4 \rangle \implies \mathbf{u} = \left\langle \frac{3}{5}, -\frac{4}{5} \right\rangle \\
+                        \nabla f(2,8) &= \left\langle \frac{\sqrt{8}}{2\sqrt{2}}, \frac{\sqrt{2}}{2\sqrt{8}} \right\rangle = \left\langle 1, \frac{1}{4} \right\rangle \implies D_{\mathbf{u}}f = 1\left(\frac{3}{5}\right) + \frac{1}{4}\left(-\frac{4}{5}\right) = \frac{1}{5}
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-2021-7" data-year="2021">
+                <div class="problem-header"><span class="badge">2021년</span></div>
+                <div class="problem-title">7번. 편미분방정식을 만족하는 상수 n</div>
+                <div class="problem-body">
+                    $f(x,y) = y^n e^{-x^2/(4y)}$라고 하자. 함수 $f$가 다음 방정식을 만족하도록 하는 상수 $n$의 값을 구하시오.
+                    $$\frac{\partial f}{\partial y} = \frac{1}{x^2} \cdot \frac{\partial}{\partial x}\left(x^2 \frac{\partial f}{\partial x}\right)$$
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>$$-\frac{3}{2}$$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        f_y &= n y^{n-1} e^{-x^2/(4y)} + \frac{x^2}{4} y^{n-2} e^{-x^2/(4y)} \\
+                        f_x &= -\frac{x}{2y} f \implies x^2 f_x = -\frac{x^3}{2y} f \implies \frac{\partial}{\partial x}(x^2 f_x) = -\frac{3x^2}{2y}f + \frac{x^4}{4y^2}f \\
+                        \frac{1}{x^2}\frac{\partial}{\partial x}(x^2 f_x) &= -\frac{3}{2}y^{n-1}e^{-x^2/(4y)} + \frac{x^2}{4}y^{n-2}e^{-x^2/(4y)} \implies n = -\frac{3}{2}
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-2021-8" data-year="2021">
+                <div class="problem-header"><span class="badge">2021년</span></div>
+                <div class="problem-title">8번. 접평면의 방정식</div>
+                <div class="problem-body">
+                    점 $(0,0)$에서 곡면 $z = 1 + \sin (2x + 3y)$에 접하는 접평면의 방정식을 구하시오.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>$$2x + 3y - z + 1 = 0$$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        z(0,0) = 1, \quad z_x(0,0) = 2\cos(0) = 2, \quad z_y(0,0) = 3\cos(0) = 3 \implies z - 1 = 2x + 3y
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-2021-9" data-year="2021">
+                <div class="problem-header"><span class="badge">2021년</span></div>
+                <div class="problem-title">9번. 두 구의 교선을 포함하는 평면 및 거리</div>
+                <div class="problem-body">
+                    곡면 $S_1: x^2 + y^2 + z^2 = 4$, $S_2: (x-1)^2 + (y-2)^2 + (z+1)^2 = 9$
+                    <br>(1) 이 교선을 포함하는 평면의 방정식을 구하시오.
+                    <br>(2) (1)에서 구한 평면으로부터 점 $(1,1,1)$까지의 거리를 구하시오.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>(1) $2x + 4y - 2z = 1$, (2) $\frac{\sqrt{6}}{12}$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        S_2 - S_1 &: -2x + 1 - 4y + 4 + 2z + 1 = 5 \implies 2x + 4y - 2z = 1 \\
+                        d &= \frac{|2(1) + 4(1) - 2(1) - 1|}{\sqrt{2^2 + 4^2 + (-2)^2}} = \frac{3}{\sqrt{24}} = \frac{\sqrt{6}}{4}
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-2021-10" data-year="2021">
+                <div class="problem-header"><span class="badge">2021년</span></div>
+                <div class="problem-title">10번. 온도 함수 관련 변화율</div>
+                <div class="problem-body">
+                    온도 함수 $T = 200e^{-x^2-3y^2-9z^2}$
+                    <br>(1) 점 $P(2, -1, 2)$에서 점 $Q(3, -3, 3)$ 방향으로의 온도의 변화율을 구하시오.
+                    <br>(2) 점 $P$에서 온도의 최대 증가율을 구하시오.
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>(1) $\frac{1000e^{-43}}{3}$, (2) $200\sqrt{1333}e^{-43}$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        \nabla T(2,-1,2) &= 200e^{-43}\langle -4, 6, -36 \rangle \\
+                        \vec{PQ} &= \langle 1, -2, 1 \rangle \implies \mathbf{u} = \left\langle \frac{1}{3}, -\frac{2}{3}, \frac{1}{3} \right\rangle \implies D_{\mathbf{u}}T = \frac{1000e^{-43}}{3} \\
+                        \text{최대 증가율} &= \|\nabla T(P)\| = 200e^{-43}\sqrt{16 + 36 + 1296} = 200\sqrt{1348}e^{-43}
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <!-- 2017년 -->
+            <div class="problem-card" id="prob-2017-1-1" data-year="2017">
+                <div class="problem-header"><span class="badge">2017년</span></div>
+                <div class="problem-title">1번 (1). 3x3 행렬식 구하기</div>
+                <div class="problem-body">
+                    다음 행렬의 행렬식을 구하여라. $$\begin{pmatrix} 1 & 2 & 4 \\ 3 & 5 & 1 \\ 1 & 0 & 2 \end{pmatrix}$$
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>$$-20$$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        \det \begin{pmatrix} 1 & 2 & 4 \\ 3 & 5 & 1 \\ 1 & 0 & 2 \end{pmatrix} &= 1 \begin{vmatrix} 5 & 1 \\ 0 & 2 \end{vmatrix} - 2 \begin{vmatrix} 3 & 1 \\ 1 & 2 \end{vmatrix} + 4 \begin{vmatrix} 3 & 5 \\ 1 & 0 \end{vmatrix} \\
+                        &= 10 - 10 - 20 = -20
+                        \end{align*}$$
+                    </div>
+                </details>
+            </div>
+
+            <div class="problem-card" id="prob-2017-1-2" data-year="2017">
+                <div class="problem-header"><span class="badge">2017년</span></div>
+                <div class="problem-title">1번 (2). 3x3 행렬식 구하기</div>
+                <div class="problem-body">
+                    다음 행렬의 행렬식을 구하여라. $$\begin{pmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9 \end{pmatrix}$$
+                </div>
+                <div class="answer-box">
+                    <span class="answer-label">정답</span>
+                    <span>$$0$$</span>
+                </div>
+                <details>
+                    <summary>💡 상세 풀이 보기</summary>
+                    <div class="solution-body">
+                        $$\begin{align*}
+                        \det \begin{pmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9 \end{pmatrix} &= 1 \begin{vmatrix} 5 & 6 \\ 8 & 9 \end{vmatrix} - 2 \begin{vmatrix} 4 & 6 \\ 7 & 9 \end{vmatrix} + 3 \begin{vmatrix} 4 & 5 \\ 7 & 8 \end{vmatrix} \\
+                        &= 1(45 - 48) - 2(36 - 42) + 3(32 - 35) = -3 + 12 - 9 = 0
                         \end{align*}$$
                     </div>
                 </details>
@@ -665,19 +1785,13 @@
         </div>
     </div>
 
-    <!-- 오른쪽에 고정되는 바로가기 목차 (Quick Nav) -->
     <nav class="quick-nav">
         <div class="quick-nav-title">문제 바로가기</div>
-        <ul class="quick-nav-list" id="quick-nav-list">
-            <!-- 자바스크립트로 자동으로 생성됩니다 -->
-        </ul>
+        <ul class="quick-nav-list" id="quick-nav-list"></ul>
     </nav>
-
 </div>
 
-<!-- 자바스크립트 -->
 <script>
-    // 1. KaTeX 수식 렌더링
     document.addEventListener("DOMContentLoaded", function() {
         renderMathInElement(document.body, {
             delimiters: [
@@ -686,23 +1800,18 @@
             ],
             throwOnError: false
         });
-
-        // 처음 실행 시 2025년을 기본 선택 상태로 필터링 적용
         filterYear('2025');
     });
 
-    // 2. 문제 목록을 읽어와서 오른쪽 목차 자동 생성하는 함수
     function generateQuickNav() {
         const navList = document.getElementById('quick-nav-list');
         navList.innerHTML = '';
-
         const visibleProblems = document.querySelectorAll('.problem-card');
         
         visibleProblems.forEach(card => {
             if (card.style.display !== 'none') {
                 const titleText = card.querySelector('.problem-title').innerText;
                 const shortTitle = titleText.split('.')[0]; 
-
                 const li = document.createElement('li');
                 li.className = 'quick-nav-item';
                 li.innerHTML = `<a href="#${card.id}">${shortTitle}</a>`;
@@ -711,7 +1820,6 @@
         });
     }
 
-    // 3. 년도별 필터링 기능 (초기 선택: 2025년)
     function filterYear(year) {
         const problems = document.querySelectorAll('.problem-card');
         const buttons = document.querySelectorAll('.filter-btn');
@@ -735,15 +1843,11 @@
         generateQuickNav();
     }
 
-    // 4. 모든 풀이 한 번에 열기/접기 기능
     let allOpen = false;
     function toggleAllSolutions() {
         const detailsList = document.querySelectorAll('details');
         allOpen = !allOpen;
-        
-        detailsList.forEach(detail => {
-            detail.open = allOpen;
-        });
+        detailsList.forEach(detail => { detail.open = allOpen; });
     }
 </script>
 
