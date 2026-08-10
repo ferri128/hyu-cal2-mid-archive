@@ -102,11 +102,11 @@
             box-shadow: 0 4px 6px -1px rgba(29, 78, 216, 0.25);
         }
 
-        /* 오른쪽 사이드바 및 열기/접기 버튼 스타일 */
+        /* 오른쪽 사이드바 */
         .quick-nav {
             position: sticky;
             top: 40px;
-            width: 200px;
+            width: 210px;
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 12px;
@@ -209,35 +209,18 @@
             overflow-x: auto;
         }
 
-        .answer-box {
-            background-color: var(--answer-bg);
-            border: 1px solid var(--answer-border);
-            color: var(--answer-text);
-            padding: 12px 18px;
-            border-radius: 10px;
-            font-weight: 600;
-            margin-bottom: 18px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            overflow-x: auto;
-        }
-
-        .answer-label {
-            background-color: #16a34a;
-            color: #ffffff;
-            padding: 2px 8px;
-            border-radius: 6px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            flex-shrink: 0;
-        }
-
+        /* 정답 및 풀이 접이식 디자인 */
         details {
             background-color: var(--details-bg);
             border: 1px solid var(--border-color);
             border-radius: 10px;
-            padding: 12px 16px;
+            padding: 10px 16px;
+            margin-bottom: 12px;
+        }
+
+        details.answer-details {
+            background-color: var(--answer-bg);
+            border-color: var(--answer-border);
         }
 
         details[open] { background-color: #ffffff; }
@@ -252,6 +235,10 @@
             justify-content: space-between;
         }
 
+        details.answer-details summary {
+            color: var(--answer-text);
+        }
+
         summary::after {
             content: "▼";
             font-size: 0.75rem;
@@ -261,9 +248,18 @@
         details[open] summary::after { transform: rotate(180deg); }
         summary::-webkit-details-marker { display: none; }
 
+        .answer-body {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed var(--answer-border);
+            font-weight: 700;
+            color: var(--answer-text);
+            overflow-x: auto;
+        }
+
         .solution-body {
-            margin-top: 14px;
-            padding-top: 14px;
+            margin-top: 10px;
+            padding-top: 10px;
             border-top: 1px dashed var(--border-color);
             overflow-x: auto;
         }
@@ -322,11 +318,13 @@
                 <div class="problem-body">
                     다음 적분을 계산하여라. $$\int_{0}^{\pi} \left(t^3 \mathbf{i} + 4\sin t \mathbf{j} - 4e^{2t}\mathbf{k}\right) \, dt$$
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>$$\frac{\pi^4}{4} \mathbf{i} + 4 \mathbf{j} - 2 \left( e^{2\pi}-1 \right)\mathbf{k}$$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        $$\frac{\pi^4}{4} \mathbf{i} + 4 \mathbf{j} - 2 \left( e^{2\pi}-1 \right)\mathbf{k}$$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -343,11 +341,13 @@
                 <div class="problem-body">
                     $$f(x,y) = \sinh(x^2 + \cos y)$$일 때, $f$의 그래디언트를 구하여라.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>$$\left( 2x\cosh(x^2 + \cos y), \, -\sin y\cosh(x^2 + \cos y) \right)$$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        $$\left( 2x\cosh(x^2 + \cos y), \, -\sin y\cosh(x^2 + \cos y) \right)$$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -366,11 +366,13 @@
                 <div class="problem-body">
                     $$f(x,y) = \frac{x}{y}$$일 때, 점 $(3,1)$에서의 $\langle1,1\rangle$ 방향의 방향도함수를 구하여라.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>$$-\sqrt{2}$$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        $$-\sqrt{2}$$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -391,11 +393,13 @@
                 <div class="problem-body">
                     $$g(x,y) = e^{xy} \log(y^2)$$일 때, $g_{xy}$를 구하여라. (단, $\log$는 자연로그이다.)
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>$$e^{xy} \left[ (1 + xy)\log(y^2) + 2 \right]$$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        $$e^{xy} \left[ (1 + xy)\log(y^2) + 2 \right]$$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -415,11 +419,13 @@
                 <div class="problem-body">
                     $$\int_{0}^{\pi} \int_{-2}^{2} x^2 \sin y \, dx dy$$를 계산하시오.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>$$\frac{32}{3}$$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        $$\frac{32}{3}$$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -437,11 +443,13 @@
                 <div class="problem-body">
                     $$\mathbf{r}(t) = \left\langle e^t , \sqrt{4-t^2}, \frac{t-t^2}{t \ln t } \right\rangle$$라 하자. $\mathbf{r}(t)$의 정의역을 구하여라.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>$$(0,1) \cup (1,2]$$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        $$(0,1) \cup (1,2]$$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -460,11 +468,13 @@
                 <div class="problem-body">
                     $$\lim_{t \to 1}{\mathbf{r}(t)}$$를 구하여라. 만약 없다면 그 이유를 밝혀라.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>$$\left\langle e, \, \sqrt{3}, \, -1 \right\rangle$$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        $$\left\langle e, \, \sqrt{3}, \, -1 \right\rangle$$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -481,11 +491,13 @@
                 <div class="problem-body">
                     다음 방정식 $$z=1+\sin(2x +3y)$$의 점 $$\left( \frac{\pi}{6}, 0 \right)$$에서 수직인 면의 방정식을 구하여라.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>$$z = x + \frac{3}{2}y - \frac{\pi}{6} + 1 + \frac{\sqrt{3}}{2}$$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        $$z = x + \frac{3}{2}y - \frac{\pi}{6} + 1 + \frac{\sqrt{3}}{2}$$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -505,11 +517,13 @@
                 <div class="problem-body">
                     $$xyz = \cos(xy - y +z^2 -1)$$일 때, $(1, 1, 1)$에서 $$\frac{\partial z }{\partial x }+\frac{\partial z }{\partial y}$$를 구하여라.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>$$-2$$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        $$-2$$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -528,11 +542,13 @@
                 <div class="problem-body">
                     곡선 $C$는 $$\mathbf{r}(t) = \left\langle t^2 +t, t^2 - t +1 , t^3 \right\rangle$$로 정의된다. $$-3y + z + 2 =0$$과 평행한 평면이 곡선 $C$와 만나는 점에서의 곡선 $C$의 곡률을 구하여라.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>$$\frac{4\sqrt{10}}{19\sqrt{19}}$$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        $$\frac{4\sqrt{10}}{19\sqrt{19}}$$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -553,11 +569,13 @@
                 <div class="problem-body">
                     영역 $$D = \left\{\left(x,y\right) | x \ge 0, y \ge 0, x^2 +y^2 \le 4 \right\}$$에서 $$f(x, y) = x^4 +y^4 - 4xy$$의 최댓값과 최솟값을 구하여라.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>Maximum: $16$, Minimum: $-2$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        Maximum: $16$, Minimum: $-2$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -581,11 +599,13 @@
                 <div class="problem-body">
                     $$x + y + z = 2$$와 $$xz = 1$$을 만족할 때, 함수 $$f(x, y, z) = x^2 + y^2 + z^2$$의 최댓값과 최솟값이 존재한다면 이를 구하시오.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>Maximum: 존재하지 않음, Minimum: $2$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        Maximum: 존재하지 않음, Minimum: $2$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -605,11 +625,13 @@
                 <div class="problem-body">
                     $$m \ne 0$$이고 $x \in \mathbb{R}$일 때, $$\int_0^x \int_0^u \frac{e^{m(x-t)}}{x-t}\,dt du$$
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>$$\frac{e^{mx} - 1}{m}$$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        $$\frac{e^{mx} - 1}{m}$$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -628,11 +650,13 @@
                 <div class="problem-body">
                     $$\max \{a, b\} = \begin{cases} b & a \le b \\ a & b \le a \end{cases}$$이라 할 때, $$\int_0^9 \int_0^5 e^{\max \left\{ 25x^2 , 81y^2 \right\}}\,dy dx$$를 구하여라.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>$$\frac{e^{2025} - 1}{45}$$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        $$\frac{e^{2025} - 1}{45}$$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -653,11 +677,13 @@
                 <div class="problem-body">
                     다음 곡선 $$\mathbf{r}(t) = \left(t\cos t\right) \mathbf{i} + \left(t\sin t\right)\mathbf{j}+\left( \frac{2\sqrt2}{3}\right)t^{\frac{3}{2}} \mathbf{k}, \quad (0\le t \le 1)$$의 길이를 구하시오.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>$$\frac{3}{2}$$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        $$\frac{3}{2}$$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -675,11 +701,13 @@
                 <div class="problem-body">
                     다음 극한 $$\lim_{(x,y) \to(0,0)}\tan^{-1}\left( \frac{|x|+|y|}{x^2 +y^2}\right)$$이 존재하면 구하시오. 존재하지 않으면 존재하지 않음을 보이시오.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>$$\frac{\pi}{2}$$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        $$\frac{\pi}{2}$$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -697,11 +725,13 @@
                 <div class="problem-body">
                     $C$를 쌍곡기둥 $x^2 - y^2 =1$과 곡면 $z= \ln(x+y)$의 교선이라 할 때, $C$의 곡률이 최대가 되는 점을 구하시오.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>$$(1, 0, 0)$$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        $$(1, 0, 0)$$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -723,11 +753,13 @@
                 <div class="problem-body">
                     (1)의 점에서 접하는 평면을 구하시오.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>$$y = z$$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        $$y = z$$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -746,11 +778,13 @@
                 <div class="problem-body">
                     다음 함수 $$f(x,y) = \frac{\sqrt{x^2 +y^2 -3}}{\ln (4-x^2-y^2)}$$의 정의역과 함숫값의 범위를 구하여라.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>정의역: $\{(x,y) \in \mathbb{R}^2 \mid 3 \le x^2 + y^2 < 4\}$, 치역: $(-\infty, 0)$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        정의역: $\{(x,y) \in \mathbb{R}^2 \mid 3 \le x^2 + y^2 < 4\}$, 치역: $(-\infty, 0)$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -771,11 +805,13 @@
                 <div class="problem-body">
                     방정식 $e^{xyz} = y + \arctan x$에서 $z$가 $x, y$의 음함수로 정의될 때, $\frac{\partial z}{\partial x}, \frac{\partial z}{\partial y}$를 구하여라.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>$$\frac{\partial z}{\partial x} = \frac{1 - yz(1+x^2)(y + \arctan x)}{xy(1+x^2)(y + \arctan x)}, \quad \frac{\partial z}{\partial y} = \frac{1 - xz(y + \arctan x)}{xy(y + \arctan x)}$$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        $$\frac{\partial z}{\partial x} = \frac{1 - yz(1+x^2)(y + \arctan x)}{xy(1+x^2)(y + \arctan x)}, \quad \frac{\partial z}{\partial y} = \frac{1 - xz(y + \arctan x)}{xy(y + \arctan x)}$$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -794,11 +830,13 @@
                 <div class="problem-body">
                     $z= f(x,y)$이고 $x=r \cos \theta, y=r\sin \theta$일 때, $f_{xx}(1,1) =1, f_{yy}(1,1)=-1, f_{xy}(1,1)=3$이다. $r=\sqrt2, \theta = \frac{\pi}{4}$일 때, $\frac{\partial^2 z }{\partial r^2 }$를 구하여라.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>$$3$$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        $$3$$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -820,11 +858,13 @@
                 <div class="problem-body">
                     점 $(1,1)$에서 벡터 $\mathbf{u} = \langle 1, 2 \rangle$ 방향으로 함수 $f(x,y) = \int_{xy}^{x^2+y^2} e^{t^2} \, dt$의 방향도함수를 구하여라.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>$$\frac{6e^4 - 3 e}{\sqrt5}$$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        $$\frac{6e^4 - 3 e}{\sqrt5}$$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -842,11 +882,13 @@
                 <div class="problem-body">
                     다음 함수 $f(x,y) = 3xy - x^2y - xy^2$의 극댓값, 극솟값, 안장점을 찾아라.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>Local maximum value: $1$, Local minimum value: none, Saddle points: $(0,0), (3,0), (0,3)$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        Local maximum value: $1$, Local minimum value: none, Saddle points: $(0,0), (3,0), (0,3)$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -870,11 +912,13 @@
                 <div class="problem-body">
                     원뿔 $z^2 = x^2 + y^2$과 평면 $z = x + y + 2$가 만나서 생기는 교선을 $C$라고 하자. 원점에서 교선 $C$ 위에 있는 점들 중 가장 가까운 점의 좌표, 원점과 그 점 사이의 거리를 구하여라.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>최단거리: $2(2-\sqrt2)$, 최단거리 점: $(-2+\sqrt{2}, -2+\sqrt{2}, -2+2\sqrt{2})$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        최단거리: $2(2-\sqrt2)$, 최단거리 점: $(-2+\sqrt{2}, -2+\sqrt{2}, -2+2\sqrt{2})$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -895,11 +939,13 @@
                 <div class="problem-body">
                     $R=\{(x,y): 0 \le x \le 1, 0 \le y \le 1\}$에서 다음 적분 $\iint_R \frac{xy^2}{y^2+1} \, dA$을 계산하여라.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>$$\frac{1}{2} - \frac{\pi}{8}$$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        $$\frac{1}{2} - \frac{\pi}{8}$$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -917,11 +963,13 @@
                 <div class="problem-body">
                     평면 $2x + y + z = 4$의 아래에 있고, $xy$-평면 위에서 포물선 $y = x^2$과 직선 $x + y = 2$, 그리고 $y = 0$으로 둘러싸인 영역 $D$의 위에 놓여 있는 입체의 부피를 구하여라.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>$$\frac{37}{30}$$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        $$\frac{37}{30}$$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -942,11 +990,13 @@
                     극좌표를 사용하여 다음 적분을 하나의 이중적분으로 나타내시오. 그러고 나서 그 이중적분의 값을 계산하시오.
                     $$\int_{0}^{1} \int_{\sqrt{1-y^2}}^{0} \ln(x^2+y^2) \, dx \, dy + \int_{0}^{1} \int_{0}^{x+1} \ln(x^2+y^2) \, dy \, dx + \int_{0}^{2} \int_{1}^{\sqrt{5-y^2}} \ln(x^2+y^2) \, dx \, dy + \int_{0}^{1} \int_{x+1}^{\sqrt{5-x^2}} \ln(x^2+y^2) \, dy \, dx$$
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>$$\frac{\pi}{4}(5\ln 5 - 4)$$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        $$\frac{\pi}{4}(5\ln 5 - 4)$$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -965,11 +1015,13 @@
                 <div class="problem-body">
                     다음 함수 $f(x,y) = \sqrt{\sin^{-1}(\ln(x^2 + y^2))}$의 정의역을 구하여라.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>Domain: $\{(x,y) \mid 1 \le x^2 + y^2 \le e\}$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        Domain: $\{(x,y) \mid 1 \le x^2 + y^2 \le e\}$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -986,11 +1038,13 @@
                 <div class="problem-body">
                     $\mathbf{r}(t) = \left\langle \frac{\sqrt{4+t}-2}{t}, t^2e^{-t}, \ln(1-2t)^{1/t} \right\rangle$에 대하여 $\lim_{t \to 0 }{\mathbf{r}(t)}$를 구하여라.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>$$\left\langle \frac{1}{4}, 0, -2 \right\rangle$$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        $$\left\langle \frac{1}{4}, 0, -2 \right\rangle$$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -1007,11 +1061,13 @@
                 <div class="problem-body">
                     곡선 $C: y = x^4 -2x^2$에서 $(1,1)$에서의 곡률을 구하여라.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>$$8$$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        $$8$$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -1029,11 +1085,13 @@
                 <div class="problem-body">
                     곡선 $C$에서 $(1,1)$에서 접촉원의 방정식을 구하여라.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>$$(x - 1)^2 + \left(y + \frac{7}{8}\right)^2 = \frac{1}{64}$$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        $$(x - 1)^2 + \left(y + \frac{7}{8}\right)^2 = \frac{1}{64}$$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -1050,11 +1108,13 @@
                 <div class="problem-body">
                     $f(x,y,z) = xe^{xyz}$ 일 때, 점 $(1,2,3)$에서 벡터 $\mathbf{v} = 3\mathbf{i} + 6\mathbf{j} - 2\mathbf{k}$ 방향으로의 $f$의 방향도함수를 구하시오.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>$$5e^6$$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        $$5e^6$$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -1072,11 +1132,13 @@
                 <div class="problem-body">
                     점 $(1.1, 1.1)$에서 함수 $z = \arctan(xy)$의 선형 근사식을 구하시오.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>$$\frac{\pi}{4}+\frac{1}{10}$$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        $$\frac{\pi}{4}+\frac{1}{10}$$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -1095,11 +1157,13 @@
                 <div class="problem-body">
                     $z = f(x + \sqrt{2}y) + g(x - \sqrt{2}y)$가 연속인 2계 편도함수를 가질 때, 다음 방정식 $\frac{\partial^2 z}{\partial x^2} = c \left( \frac{\partial^2 z}{\partial y^2} \right)$을 만족하는 상수 $c$의 값을 구하시오.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>$$0.5$$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        $$0.5$$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -1117,11 +1181,13 @@
                 <div class="problem-body">
                     $P(-1, 1, -1)$에서 곡면 $S: xy^2z = 1$의 접평면과 곡면 $T: x^2 + z^2 = 1$이 만나서 생기는 교선을 나타내는 벡터 함수를 구하시오.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>$$\mathbf{r}(t) = \left\langle \cos t, \; \frac{1}{2}\cos t + \frac{1}{2}\sin t + 2, \; \sin t \right\rangle$$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        $$\mathbf{r}(t) = \left\langle \cos t, \; \frac{1}{2}\cos t + \frac{1}{2}\sin t + 2, \; \sin t \right\rangle$$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -1139,11 +1205,13 @@
                 <div class="problem-body">
                     점 $(0, 0, 0)$에서 곡선 $\mathbf{r}(t) = \left\langle t \cos t, t \sin t, t \right\rangle$의 단위법선벡터를 구하시오.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>$$\left\langle 0,1,0 \right\rangle$$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        $$\left\langle 0,1,0 \right\rangle$$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -1162,11 +1230,13 @@
                 <div class="problem-body">
                     함수 $f(x,y) = 4 + x^3 + y^3 - 3xy$의 극댓값, 극솟값 및 안장점을 구하시오.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>Saddle point: $(0,0)$, Local Minimum Value: $3$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        Saddle point: $(0,0)$, Local Minimum Value: $3$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -1185,11 +1255,13 @@
                 <div class="problem-body">
                     $\tan(\sin y) = \frac{e^{xyz}}{xz} (xyz \neq 1, xz \neq 0)$ 일 때, $\frac{\partial^2 z}{\partial x^2}$를 구하시오.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>$$\frac{2z}{x^2}$$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        $$\frac{2z}{x^2}$$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -1208,11 +1280,13 @@
                 <div class="problem-body">
                     라그랑주 승수법을 사용하여 집합 $D = \left\{ (x,y) \middle| \frac{x^2}{9} + \frac{y^2}{4} \le 1 \right\}$에서 함수 $f(x,y) = 2xy$의 최댓값과 최솟값을 구하시오.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>Maximum: $6$, Minimum: $-6$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        Maximum: $6$, Minimum: $-6$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -1232,11 +1306,13 @@
                 <div class="problem-body">
                     $\mathbb{R}^2$에서 정의된 함수 $f(x,y) = \frac{x^\alpha + y^\alpha}{x^2 + y^2}$가 있다 $(\alpha \in \mathbb{R}^+)$. 극한이 존재할 때, 가능한 모든 $\alpha$ 값에 대하여 $(x,y)$가 $(0,0)$으로 접근할 때의 $f(x,y)$의 극한값을 구하시오.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>$$\begin{cases} 0 & (\alpha > 2) \\ 1 & (\alpha = 2) \\ \infty & (\alpha < 2) \end{cases}$$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        $$\begin{cases} 0 & (\alpha > 2) \\ 1 & (\alpha = 2) \\ \infty & (\alpha < 2) \end{cases}$$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -1256,11 +1332,13 @@
                 <div class="problem-body">
                     다음 극한 $$\lim_{t \to \infty }{\left\langle \frac{\sin^2 t}{e^{-t^2}-1} , \, t^2 e^{-t}  , \, \frac{\tan^{-1}t}{\ln (1+2t)} \right\rangle}$$을 구하여라.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>$$\left\langle 0, 0, 0 \right\rangle$$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        $$\left\langle 0, 0, 0 \right\rangle$$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -1276,11 +1354,13 @@
                 <div class="problem-body">
                     다음 곡선 $x=e^{-t}\cos t , y = e^{-t} \sin t , z = e^{-t}$에서 $(1,0,1)$에서의 접선의 방정식을 구하여라.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>$$\frac{x-1}{-1} = \frac{y}{1} = \frac{z-1}{-1}$$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        $$\frac{x-1}{-1} = \frac{y}{1} = \frac{z-1}{-1}$$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -1296,11 +1376,13 @@
                 <div class="problem-body">
                     다음 곡선 $\mathbf{r}(t) = \left\langle 5 \sin t , t , 5 \cos t \right\rangle$에서 곡률을 구하여라.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>$$\frac{5}{26}$$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        $$\frac{5}{26}$$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -1317,11 +1399,13 @@
                 <div class="problem-body">
                     다음 함수 $f(x,y) = \sin^{-1}(x+y)$의 정의역을 구하여라.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>$$\{(x,y) \mid -1 \le x+y \le 1\}$$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        $$\{(x,y) \mid -1 \le x+y \le 1\}$$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -1337,11 +1421,13 @@
                 <div class="problem-body">
                     극좌표를 이용하여 다음 극한 $$\lim_{(x,y) \to (0,0)}{\frac{e^{-(x^2 +y^2)}-1}{x^2 +y^2}}$$을 구하여라.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>$$-1$$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        $$-1$$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -1357,11 +1443,13 @@
                 <div class="problem-body">
                     $R_1, R_2, R_3$인 저항을 병렬연결했을 때, 전체저항 $R$은 다음과 같은 관계 $\frac{1}{R} = \frac{1}{R_1}+\frac{1}{R_2}+\frac{1}{R_3}$를 가진다. $\frac{\partial R }{\partial R_1}$을 구하여라.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>$$\frac{R^2}{R_1^2}$$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        $$\frac{R^2}{R_1^2}$$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -1377,11 +1465,13 @@
                 <div class="problem-body">
                     다음 함수 $f(x,y,z) = \sqrt{x^2 + y^2 + z^2}$의 $(3,2,6)$에서의 선형근사식을 구하여라.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>$$L(x,y,z) = \frac{3}{7}x + \frac{2}{7}y + \frac{6}{7}z$$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        $$L(x,y,z) = \frac{3}{7}x + \frac{2}{7}y + \frac{6}{7}z$$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -1398,11 +1488,13 @@
                 <div class="problem-body">
                     방정식 $F(x,y,z) = 0$이 세 변수 $x, y, z$ 각각을 나머지 두 변수에 대한 함수 $z = f(x,y), y = g(x,z), x = h(y,z)$로 정의한다고 하자. $F$가 미분가능하고 $F_x, F_y, F_z \neq 0$일 때, $\frac{\partial z}{\partial y} \frac{\partial y}{\partial x} \frac{\partial x}{\partial z}$를 구하시오.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>$$-1$$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        $$-1$$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -1418,11 +1510,13 @@
                 <div class="problem-body">
                     점 $P(a,b)$에서 $2\mathbf{i}$ 방향으로의 $f(x,y)$의 방향도함수가 $3$이고, $\mathbf{i}+\mathbf{j}$ 방향으로의 방향도함수가 $\sqrt{2}$라고 하자. 이 최대 변화율을 구하시오.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>$$\sqrt{10}$$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        $$\sqrt{10}$$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -1439,11 +1533,13 @@
                 <div class="problem-body">
                     함수 $f(x,y) = -x^2 - 2xy + y^2 - y^4$의 임계점을 찾고 구분하시오.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>$(0,0)$: 안장점, $(1,-1), (-1,1)$: 극댓점</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        $(0,0)$: 안장점, $(1,-1), (-1,1)$: 극댓점
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -1463,11 +1559,13 @@
                 <div class="problem-body">
                     제약조건 $g(x,y,z) = x + y - 2 = 0$ 및 $h(x,y,z) = z - 1 \ge 0$을 만족하는 함수 $f(x,y,z) = x^4 + 2y^2 + 4z^4 - 2z^2$의 최솟값을 구하시오.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>$$\frac{10}{3}$$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        $$\frac{10}{3}$$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -1485,11 +1583,13 @@
                 <div class="problem-body">
                     곡면 $z = y \cos(xy)$ 아래와 영역 $R = [0, 1] \times [\pi/4, \pi/2]$ 위에 있는 입체의 부피를 구하시오.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>$$1 - \frac{\sqrt{2}}{2}$$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        $$1 - \frac{\sqrt{2}}{2}$$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -1505,11 +1605,13 @@
                 <div class="problem-body">
                     영역 $D = \{(x,y) : 1 \le x \le 2, 0 \le y \le \ln x\}$일 때, 이중적분 $\iint_D x \sqrt{1+e^{2y}} \, dA$의 값을 구하시오.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>$$\frac{5\sqrt{5} - 2\sqrt{2}}{3}$$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        $$\frac{5\sqrt{5} - 2\sqrt{2}}{3}$$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -1526,11 +1628,13 @@
                 <div class="problem-body">
                     다음 반복적분 $$\int_1^{\sqrt{2}} \int_0^{\sqrt{2-x^2}} \frac{1}{\sqrt{x^2+y^2}} \, dy \, dx$$의 값을 구하시오.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>$$\frac{\pi}{4}\ln 2$$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        $$\frac{\pi}{4}\ln 2$$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -1547,11 +1651,13 @@
                 <div class="problem-body">
                     만약 $\mathbf{a} = \left\langle 3,0,-1 \right\rangle, \text{comp}_{\mathbf{a}} \mathbf{b}=2$인 $\mathbf{b}$를 구하여라.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>$$\mathbf{b} \cdot \mathbf{a} = 2\sqrt{10}\text{을 만족하는 임의의 벡터 (예: } \langle \frac{2\sqrt{10}}{3}, 0, 0 \rangle \text{)}$$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        $$\mathbf{b} \cdot \mathbf{a} = 2\sqrt{10}\text{을 만족하는 임의의 벡터 (예: } \langle \frac{2\sqrt{10}}{3}, 0, 0 \rangle \text{)}$$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -1567,11 +1673,13 @@
                 <div class="problem-body">
                     외적을 이용하여 꼭짓점이 $P(1,0,2), Q(3,3,3), R(7,5,8)$, 그리고 $S(5,2,7)$인 평행사변형의 넓이를 구하시오.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>$$\sqrt{221}$$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        $$\sqrt{221}$$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -1588,11 +1696,13 @@
                 <div class="problem-body">
                     다음 극한 $\lim_{(x,y) \to (0,0)} \frac{y^2 \sin^2 x}{x^4 + y^4}$이 존재하면 극한값을 구하고, 존재하지 않으면 존재하지 않음을 보이시오.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>존재하지 않음</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        존재하지 않음
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -1610,11 +1720,13 @@
                     <br>(1) 단위접선벡터 $\mathbf{T}(t)$와 단위법선벡터 $\mathbf{N}(t)$
                     <br>(2) 곡률 $\kappa(t)$
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>(1) $\mathbf{T}(t) = \langle \frac{2}{\sqrt{5}}, \frac{\sin t}{\sqrt{5}}, \frac{\cos t}{\sqrt{5}} \rangle, \mathbf{N}(t) = \langle 0, \cos t, -\sin t \rangle$, (2) $\kappa(t) = \frac{1}{\sqrt{5}t}$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        (1) $\mathbf{T}(t) = \langle \frac{2}{\sqrt{5}}, \frac{\sin t}{\sqrt{5}}, \frac{\cos t}{\sqrt{5}} \rangle, \mathbf{N}(t) = \langle 0, \cos t, -\sin t \rangle$, (2) $\kappa(t) = \frac{1}{\sqrt{5}t}$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -1633,11 +1745,13 @@
                 <div class="problem-body">
                     $z = x^2 - xy + 3y^2$ 이고 $(x,y)$가 $(3,-1)$에서 $(2.96, -0.95)$로 변할 때, $\Delta z$와 $dz$의 값을 비교하시오.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>$$\Delta z = -0.7189, \quad dz = -0.73$$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        $$\Delta z = -0.7189, \quad dz = -0.73$$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -1656,11 +1770,13 @@
                 <div class="problem-body">
                     점 $P(2,8)$에서 점 $Q(5,4)$ 방향으로의 함수 $f(x,y) = \sqrt{xy}$의 방향도함수를 구하시오.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>$$\frac{1}{5}$$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        $$\frac{1}{5}$$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -1678,11 +1794,13 @@
                     $f(x,y) = y^n e^{-x^2/(4y)}$라고 하자. 함수 $f$가 다음 방정식을 만족하도록 하는 상수 $n$의 값을 구하시오.
                     $$\frac{\partial f}{\partial y} = \frac{1}{x^2} \cdot \frac{\partial}{\partial x}\left(x^2 \frac{\partial f}{\partial x}\right)$$
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>$$-\frac{3}{2}$$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        $$-\frac{3}{2}$$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -1700,11 +1818,13 @@
                 <div class="problem-body">
                     점 $(0,0)$에서 곡면 $z = 1 + \sin (2x + 3y)$에 접하는 접평면의 방정식을 구하시오.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>$$2x + 3y - z + 1 = 0$$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        $$2x + 3y - z + 1 = 0$$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -1722,11 +1842,13 @@
                     <br>(1) 이 교선을 포함하는 평면의 방정식을 구하시오.
                     <br>(2) (1)에서 구한 평면으로부터 점 $(1,1,1)$까지의 거리를 구하시오.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>(1) $2x + 4y - 2z = 1$, (2) $\frac{\sqrt{6}}{12}$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        (1) $2x + 4y - 2z = 1$, (2) $\frac{\sqrt{6}}{12}$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -1745,11 +1867,13 @@
                     <br>(1) 점 $P(2, -1, 2)$에서 점 $Q(3, -3, 3)$ 방향으로의 온도의 변화율을 구하시오.
                     <br>(2) 점 $P$에서 온도의 최대 증가율을 구하시오.
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>(1) $\frac{1000e^{-43}}{3}$, (2) $200\sqrt{1333}e^{-43}$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        (1) $\frac{1000e^{-43}}{3}$, (2) $200\sqrt{1333}e^{-43}$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -1768,11 +1892,13 @@
                 <div class="problem-body">
                     다음 행렬의 행렬식을 구하여라. $$\begin{pmatrix} 1 & 2 & 4 \\ 3 & 5 & 1 \\ 1 & 0 & 2 \end{pmatrix}$$
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>$$-20$$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        $$-20$$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -1789,11 +1915,13 @@
                 <div class="problem-body">
                     다음 행렬의 행렬식을 구하여라. $$\begin{pmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9 \end{pmatrix}$$
                 </div>
-                <div class="answer-box">
-                    <span class="answer-label">정답</span>
-                    <span>$$0$$</span>
-                </div>
-                <details>
+                <details class="answer-details">
+                    <summary>✅ 정답 확인하기</summary>
+                    <div class="answer-body">
+                        $$0$$
+                    </div>
+                </details>
+                <details class="solution-details">
                     <summary>💡 상세 풀이 보기</summary>
                     <div class="solution-body">
                         $$\begin{align*}
@@ -1811,7 +1939,7 @@
     <nav class="quick-nav">
         <div class="quick-nav-header">
             <div class="quick-nav-title">문제 바로가기</div>
-            <button class="toggle-all-btn" onclick="toggleAllSolutions()">💡 전체 풀이 열기/접기</button>
+            <button class="toggle-all-btn" onclick="toggleAllSolutions()">💡 전체 정답/풀이 열기·접기</button>
         </div>
         <ul class="quick-nav-list" id="quick-nav-list"></ul>
     </nav>
@@ -1826,6 +1954,23 @@
             ],
             throwOnError: false
         });
+        
+        // 풀이 버튼 클릭 시 정답도 함께 열리도록 설정
+        document.querySelectorAll('details.solution-details summary').forEach(summary => {
+            summary.addEventListener('click', function() {
+                const parentCard = this.closest('.problem-card');
+                const answerDetails = parentCard.querySelector('details.answer-details');
+                const solutionDetails = parentCard.querySelector('details.solution-details');
+                
+                // 현재 상태와 반대로 설정 (열림 -> 닫힘, 닫힘 -> 열림)
+                if (!solutionDetails.open) {
+                    answerDetails.open = true;
+                } else {
+                    answerDetails.open = false;
+                }
+            });
+        });
+
         filterYear('2025');
     });
 
